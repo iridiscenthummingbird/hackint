@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "570548920895",
+    "project_id": "hackint-20cc4",
+    "storage_bucket": "hackint-20cc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570548920895:android:ce959a7d9cae69f4fe8e8a",
+        "android_client_info": {
+          "package_name": "com.example.hackint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570548920895-6aagr3kevrf9s3embi3jp10lnhun56po.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV38WkIM-29wY7a9TcY0toLXRjhfvP_kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570548920895-6aagr3kevrf9s3embi3jp10lnhun56po.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
