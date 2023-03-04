@@ -110,7 +110,15 @@ class RowInfo extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SvgPicture.asset(iconPath),
+          SvgPicture.asset(
+            iconPath,
+            height: 24,
+            width: 24,
+            colorFilter: const ColorFilter.mode(
+              Color(0xff643FDB),
+              BlendMode.srcIn,
+            ),
+          ),
           const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
