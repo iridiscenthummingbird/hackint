@@ -58,9 +58,15 @@ class $AssetsIconsGen {
   /// File path: assets/icons/drop_down.svg
   SvgGenImage get dropDown => const SvgGenImage('assets/icons/drop_down.svg');
 
+  /// File path: assets/icons/email.svg
+  SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
+
   /// File path: assets/icons/fileAddingIcon.svg
   SvgGenImage get fileAddingIcon =>
       const SvgGenImage('assets/icons/fileAddingIcon.svg');
+
+  /// File path: assets/icons/group.svg
+  SvgGenImage get group => const SvgGenImage('assets/icons/group.svg');
 
   /// File path: assets/icons/locationIcon.svg
   SvgGenImage get locationIcon =>
@@ -85,12 +91,20 @@ class $AssetsIconsGen {
   SvgGenImage get searchIcon =>
       const SvgGenImage('assets/icons/searchIcon.svg');
 
+  /// File path: assets/icons/student_card.svg
+  SvgGenImage get studentCard =>
+      const SvgGenImage('assets/icons/student_card.svg');
+
   /// File path: assets/icons/time.svg
   SvgGenImage get time => const SvgGenImage('assets/icons/time.svg');
 
   /// File path: assets/icons/userProfileIcon.svg
   SvgGenImage get userProfileIcon =>
       const SvgGenImage('assets/icons/userProfileIcon.svg');
+
+  /// File path: assets/icons/user_circle.svg
+  SvgGenImage get userCircle =>
+      const SvgGenImage('assets/icons/user_circle.svg');
 
   /// List of all assets
   List<SvgGenImage> get values => [
@@ -103,15 +117,19 @@ class $AssetsIconsGen {
         dandruffIcon,
         date,
         dropDown,
+        email,
         fileAddingIcon,
+        group,
         locationIcon,
         logOutIcon,
         menu,
         moreDotsIcon,
         pencilEditIcon,
         searchIcon,
+        studentCard,
         time,
-        userProfileIcon
+        userProfileIcon,
+        userCircle
       ];
 }
 
