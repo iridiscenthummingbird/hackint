@@ -115,6 +115,17 @@ class $AssetsIconsGen {
       ];
 }
 
+class $AssetsMarkersGen {
+  const $AssetsMarkersGen();
+
+  /// File path: assets/markers/defaultMarker.png
+  AssetGenImage get defaultMarker =>
+      const AssetGenImage('assets/markers/defaultMarker.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [defaultMarker];
+}
+
 class Assets {
   Assets._();
 
@@ -125,6 +136,7 @@ class Assets {
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const AssetGenImage logoBackground =
       AssetGenImage('assets/logo_background.png');
+  static const $AssetsMarkersGen markers = $AssetsMarkersGen();
   static const AssetGenImage noEvents = AssetGenImage('assets/no_events.png');
   static const SvgGenImage uploadImage = SvgGenImage('assets/uploadImage.svg');
 
@@ -238,10 +250,10 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
-      //colorFilter: colorFilter,
+      colorFilter: colorFilter,
       color: color,
       colorBlendMode: colorBlendMode,
-      //clipBehavior: clipBehavior,
+      clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );
   }

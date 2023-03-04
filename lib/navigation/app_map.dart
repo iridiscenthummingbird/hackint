@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackint/flows/menu/presentation/pages/map/map_page.dart';
 import 'package:routemaster/routemaster.dart';
 import '../flows/main/presentation/pages/main/main_page.dart';
 import 'helpers/route_map_initial_page.dart';
@@ -17,6 +18,11 @@ class AppRouteMap extends RouteMap {
       MainPage.path: (_) => _createMaterialPage(
             const RouteMapInitialPage(
               child: MainPage(),
+            ),
+          ),
+      MapPage.path: (_) => _createMaterialPage(
+            const RouteMapInitialPage(
+              child: MapPage(),
             ),
           ),
     };

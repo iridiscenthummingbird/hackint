@@ -1,5 +1,7 @@
+import 'package:hackint/flows/menu/presentation/pages/map/map_page.dart';
 import 'package:hackint/flows/menu/presentation/widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:routemaster/routemaster.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -8,10 +10,13 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      drawer: MenuDrawer(),
+    return Scaffold(
+      drawer: const MenuDrawer(),
       body: Center(
-        child: Text("Main"),
+        child: TextButton(
+          onPressed: () => Routemaster.of(context).push(MapPage.path),
+          child: Text('map'),
+        ),
       ),
     );
   }
