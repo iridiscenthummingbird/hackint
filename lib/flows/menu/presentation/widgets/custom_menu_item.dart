@@ -22,7 +22,8 @@ class CustomMenuItem extends StatelessWidget {
           children: [
             SvgPicture.asset(
               iconPath,
-              color: const Color(0xFFFFFFFF),
+              colorFilter:
+                  const ColorFilter.mode(Color(0xFFFFFFFF), BlendMode.srcIn),
             ),
             const SizedBox(width: 12),
             Text(

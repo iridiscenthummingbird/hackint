@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hackint/flows/main/presentation/pages/main/widgets/shedule_info_dialog.dart';
 import 'package:hackint/gen/assets.gen.dart';
 
 class SheduleTile extends StatelessWidget {
@@ -25,7 +26,12 @@ class SheduleTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () {},
+        onTap: () => showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const SheduleInfoDialog();
+          },
+        ),
         child: Ink(
           child: SizedBox(
             width: 380,

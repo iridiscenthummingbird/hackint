@@ -45,6 +45,10 @@ class $AssetsIconsGen {
   SvgGenImage get calendarIcon =>
       const SvgGenImage('assets/icons/calendarIcon.svg');
 
+  /// File path: assets/icons/classRoomIcon.svg
+  SvgGenImage get classRoomIcon =>
+      const SvgGenImage('assets/icons/classRoomIcon.svg');
+
   /// File path: assets/icons/clockIcon.svg
   SvgGenImage get clockIcon => const SvgGenImage('assets/icons/clockIcon.svg');
 
@@ -61,6 +65,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/fileAddingIcon.svg
   SvgGenImage get fileAddingIcon =>
       const SvgGenImage('assets/icons/fileAddingIcon.svg');
+
+  /// File path: assets/icons/graduate Icon.svg
+  SvgGenImage get graduateIcon =>
+      const SvgGenImage('assets/icons/graduate Icon.svg');
 
   /// File path: assets/icons/locationIcon.svg
   SvgGenImage get locationIcon =>
@@ -88,6 +96,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/time.svg
   SvgGenImage get time => const SvgGenImage('assets/icons/time.svg');
 
+  /// File path: assets/icons/userIcon.svg
+  SvgGenImage get userIcon => const SvgGenImage('assets/icons/userIcon.svg');
+
   /// File path: assets/icons/userProfileIcon.svg
   SvgGenImage get userProfileIcon =>
       const SvgGenImage('assets/icons/userProfileIcon.svg');
@@ -99,11 +110,13 @@ class $AssetsIconsGen {
         back,
         calendarEventIcon,
         calendarIcon,
+        classRoomIcon,
         clockIcon,
         dandruffIcon,
         date,
         dropDown,
         fileAddingIcon,
+        graduateIcon,
         locationIcon,
         logOutIcon,
         menu,
@@ -111,6 +124,7 @@ class $AssetsIconsGen {
         pencilEditIcon,
         searchIcon,
         time,
+        userIcon,
         userProfileIcon
       ];
 }
@@ -238,10 +252,10 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
-      //colorFilter: colorFilter,
+      colorFilter: colorFilter,
       color: color,
       colorBlendMode: colorBlendMode,
-      //clipBehavior: clipBehavior,
+      clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );
   }
