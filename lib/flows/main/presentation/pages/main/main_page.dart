@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -62,7 +61,6 @@ class _MainPageState extends State<MainPage> {
                       borderRadius: BorderRadius.circular(20),
                       onTap: () {
                         setState(() {
-                          if (!_MockData.week[index].isActive) {}
                           _selectedIndex = index;
                         });
                       },
@@ -84,7 +82,7 @@ class _MainPageState extends State<MainPage> {
                           ),
                           child: Center(
                             child: Text(
-                              _MockData.week[index].name,
+                              _MockData.week[index],
                               style: _selectedIndex == index
                                   ? Theme.of(context)
                                       .primaryTextTheme
@@ -127,24 +125,14 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-class _ActiveDay {
-  _ActiveDay(
-    this.name,
-    this.isActive,
-  );
-
-  String name;
-  bool isActive;
-}
-
 class _MockData {
-  static List<_ActiveDay> week = [
-    _ActiveDay('Понеділок', false),
-    _ActiveDay('Понеділок', false),
-    _ActiveDay('Понеділок', true),
-    _ActiveDay('Понеділок', false),
-    _ActiveDay('Понеділок', false),
-    _ActiveDay('Понеділок', false),
+  static List<String> week = [
+    'Понеділок',
+    'Понеділок',
+    'Понеділок',
+    'Понеділок',
+    'Понеділок',
+    'Понеділок',
   ];
 
   static const List data = ['str', 'opt'];
