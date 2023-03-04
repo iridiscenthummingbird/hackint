@@ -64,7 +64,7 @@ dependencies:
   cached_network_image: ^3.1.0
   image_cropper: ^3.0.0
   image_picker: ^0.8.5
-  flutter_svg: ^1.1.6
+  flutter_svg: ^2.0.2
 
   # ICONS
   cupertino_icons: ^1.0.3
