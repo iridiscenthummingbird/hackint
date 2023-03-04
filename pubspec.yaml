@@ -71,6 +71,8 @@ dependencies:
 
   # OTHER
   google_fonts: ^3.0.1
+  dropdown_textfield: ^1.0.8
+
 
 
 dev_dependencies:
