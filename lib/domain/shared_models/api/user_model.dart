@@ -2,6 +2,8 @@ import 'dart:convert' as dart_convert;
 
 import 'package:equatable/equatable.dart';
 
+import '../../../flows/complete_registration/domain/entities/group.dart';
+
 String encodeUserToString(UserModel user) =>
     dart_convert.json.encode(user.toJson());
 
@@ -10,11 +12,17 @@ class UserModel extends Equatable {
     required this.id,
     this.name,
     required this.email,
+    required this.isCompletedRegistration,
+    this.studentId,
+    this.group,
   });
 
   final String id;
   final String? email;
   final String? name;
+  final bool isCompletedRegistration;
+  final String? studentId;
+  final Group? group;
 
   @override
   String toString() {
@@ -30,11 +38,18 @@ class UserModel extends Equatable {
     String? name,
     String? phone,
     bool? isTermsAccepted,
+    bool? isCompletedRegistration,
+    String? studentId,
+    Group? group,
   }) {
     return UserModel(
       id: id ?? this.id,
       email: email ?? this.email,
       name: name ?? this.name,
+      isCompletedRegistration:
+          isCompletedRegistration ?? this.isCompletedRegistration,
+      studentId: studentId ?? this.studentId,
+      group: group ?? this.group,
     );
   }
 
@@ -45,6 +60,9 @@ class UserModel extends Equatable {
       id: json['id'],
       email: json['email'],
       name: json['name'],
+      isCompletedRegistration: json['isCompleteRegistration'],
+      studentId: json['studentId'],
+      group: json['group'],
     );
   }
 

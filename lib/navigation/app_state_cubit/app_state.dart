@@ -27,7 +27,7 @@ class UnauthorizedState extends AppState {
 class AuthorizedState extends AppState {
   AuthorizedState({required this.user})
       : super(
-          routeMap: AppRouteMap(),
+          routeMap: AppRouteMap(user: user),
         );
 
   final UserModel user;

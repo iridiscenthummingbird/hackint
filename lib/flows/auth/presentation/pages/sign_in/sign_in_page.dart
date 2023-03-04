@@ -44,7 +44,7 @@ class SignInPage extends StatelessWidget {
                         SvgPicture.asset(Assets.beluga.path),
                         const SizedBox(height: 20),
                         const Text(
-                          "Beluga Time",
+                          'Beluga Study',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 40,

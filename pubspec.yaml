@@ -72,6 +72,7 @@ dependencies:
 
   # OTHER
   google_fonts: ^3.0.1
+  dropdown_textfield: ^1.0.8
   google_maps_flutter: ^2.2.3
 
 
