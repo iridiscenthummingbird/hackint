@@ -87,9 +87,6 @@ class SheduleTile extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 16,
-                      ),
                     ],
                   ),
                   const SizedBox(
@@ -118,9 +115,6 @@ class SheduleTile extends StatelessWidget {
                             ?.copyWith(
                               fontSize: 16,
                             ),
-                      ),
-                      const SizedBox(
-                        width: 16,
                       ),
                     ],
                   ),
