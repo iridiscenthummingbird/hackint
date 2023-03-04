@@ -37,7 +37,7 @@ class MenuDrawer extends StatelessWidget {
               const SizedBox(height: 32),
               CustomMenuItem(
                 itemText: user.name!,
-                iconPath: Assets.icons.userIcon.path,
+                iconPath: Assets.icons.userCircle.path,
               ),
               const SizedBox(height: 12),
               Container(

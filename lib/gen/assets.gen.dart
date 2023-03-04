@@ -92,6 +92,10 @@ class $AssetsIconsGen {
   SvgGenImage get userProfileIcon =>
       const SvgGenImage('assets/icons/userProfileIcon.svg');
 
+  /// File path: assets/icons/user_circle.svg
+  SvgGenImage get userCircle =>
+      const SvgGenImage('assets/icons/user_circle.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         arrowLeftIcon,
@@ -111,7 +115,8 @@ class $AssetsIconsGen {
         studentCard,
         time,
         userIcon,
-        userProfileIcon
+        userProfileIcon,
+        userCircle
       ];
 }
 
