@@ -53,24 +53,6 @@ class MenuDrawer extends StatelessWidget {
                   Routemaster.of(context).push(ProfilePage.path);
                 },
               ),
-              const SizedBox(height: 16),
-              CustomMenuItem(
-                itemText: 'Find Event',
-                iconPath: Assets.icons.searchIcon.path,
-                // TODO: go to FindEvent(mainPage?)
-                // onTap: () async {
-                //   final result = await Routemaster.of(context)
-                //       .push<bool>(FindEventPage.path)
-                //       .result;
-                //   if (result ?? false) {
-                //     context.read<MainPageCubit>().loadEvents(
-                //           (context.read<AppStateCubit>().state
-                //                   as AuthorizedState)
-                //               .user,
-                //         );
-                //   }
-                // },
-              ),
               const Spacer(),
               CustomMenuItem(
                 itemText: 'Log out',

@@ -1,12 +1,12 @@
 name: hackint
 description: A new Flutter project.
 
-publish_to: 'none' 
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: ">=2.19.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -74,7 +74,6 @@ dependencies:
   dropdown_textfield: ^1.0.8
 
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -109,4 +108,3 @@ flutter:
     - assets/
     - assets/icons/
     - assets/fonts/
-
