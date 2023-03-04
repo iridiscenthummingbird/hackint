@@ -38,7 +38,7 @@ class _CustomSwitchButtonState extends State<CustomSwitchButton> {
         children: [
           _SwitchTile(
             value: _value,
-            text: 'Fisrt',
+            text: 'First',
           ),
           _SwitchTile(
             value: !_value,
@@ -60,8 +60,17 @@ class _SwitchTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 30,
+      width: 85,
       padding: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 1,
+            offset: const Offset(0, 0), // changes position of shadow
+          ),
+        ],
         borderRadius: BorderRadius.circular(4),
         color: value ? Colors.white : const Color(0xff643FDB),
       ),
@@ -69,7 +78,9 @@ class _SwitchTile extends StatelessWidget {
         child: Text(
           text,
           style: value
-              ? Theme.of(context).primaryTextTheme.displayLarge
+              ? Theme.of(context).primaryTextTheme.titleMedium?.copyWith(
+                    fontSize: 18,
+                  )
               : Theme.of(context).primaryTextTheme.displayLarge?.copyWith(
                     color: Colors.white,
                   ),
