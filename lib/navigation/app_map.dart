@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackint/domain/shared_models/api/user_model.dart';
+import 'package:hackint/flows/menu/presentation/pages/profile/profile.dart';
 import 'package:routemaster/routemaster.dart';
 import '../flows/complete_registration/presentation/pages/complete_registration.dart';
 import '../flows/main/presentation/pages/main/main_page.dart';
@@ -23,6 +24,11 @@ class AppRouteMap extends RouteMap {
       MainPage.path: (_) => _createMaterialPage(
             const RouteMapInitialPage(
               child: MainPage(),
+            ),
+          ),
+      ProfilePage.path: (_) => _createMaterialPage(
+            const RouteMapInitialPage(
+              child: ProfilePage(),
             ),
           ),
     };
