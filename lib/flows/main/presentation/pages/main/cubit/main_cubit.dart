@@ -1,8 +1,6 @@
-import 'dart:collection';
-
 import 'package:bloc/bloc.dart';
-import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hackint/domain/core/errors/failures.dart';
 import 'package:hackint/flows/complete_registration/domain/entities/group.dart';
 import 'package:hackint/flows/main/domain/usecase/get_lessons.dart';
 import 'package:injectable/injectable.dart';
@@ -36,7 +34,13 @@ class MainCubit extends Cubit<MainState> {
     final result = await getLessonsUseCase(group);
     result.fold(
       (failure) {
-        print(failure);
+        emit(
+          MainError(
+            failure: failure,
+            selectedWeek: state.selectedWeek,
+            lessonsMaps: state.lessonsMaps,
+          ),
+        );
       },
       (lessons) {
         final List<List<Lesson>> weeks = [];

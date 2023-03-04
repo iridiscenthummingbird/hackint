@@ -26,3 +26,13 @@ class MainLoading extends MainState {
     required super.selectedWeek,
   });
 }
+
+class MainError extends MainState {
+  const MainError({
+    required this.failure,
+    required super.lessonsMaps,
+    required super.selectedWeek,
+  });
+
+  final Failure failure;
+}
