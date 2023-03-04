@@ -1,30 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hackint/flows/main/domain/entities/lesson.dart';
+import 'package:hackint/flows/main/presentation/pages/main/cubit/main_cubit.dart';
 import 'package:hackint/flows/main/presentation/pages/main/widgets/shedule_tile.dart';
+
+import '../../../../../../navigation/app_state_cubit/app_state_cubit.dart';
 
 class TabBody extends StatelessWidget {
   const TabBody({
     super.key,
-    required this.listShedules,
+    required this.lessons,
   });
 
-  final List listShedules;
+  final List<Lesson> lessons;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16, left: 16, top: 10),
-      child: ListView.builder(
-        itemCount: 2,
+    if (lessons.isEmpty) {
+      return const Center(
+        child: Text('No lessons'),
+      );
+    }
+    return RefreshIndicator(
+      color: Theme.of(context).primaryColor,
+      onRefresh: () async {
+        final user =
+            (context.read<AppStateCubit>().state as AuthorizedState).user;
+
+        return await context.read<MainCubit>().getLessons(user.group!);
+      },
+      child: ListView.separated(
+        itemCount: lessons.length,
         itemBuilder: (context, index) {
-          return const Padding(
-            padding: EdgeInsets.only(bottom: 16),
+          final lesson = lessons[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 4,
+            ),
             child: SheduleTile(
-              category: 'Categ',
-              name: 'Name',
-              roomNumber: 1809,
-              time: '10:00',
+              number: index + 1,
+              category: lesson.type,
+              name: lesson.subjectName,
+              auditory: lesson.auditory,
+              time: lesson.time,
             ),
           );
+        },
+        separatorBuilder: (context, index) {
+          return const SizedBox(height: 10);
         },
       ),
     );

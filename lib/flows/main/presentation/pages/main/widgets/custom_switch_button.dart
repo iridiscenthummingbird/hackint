@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hackint/flows/main/presentation/pages/main/cubit/main_cubit.dart';
 
 class CustomSwitchButton extends StatefulWidget {
   final bool initialValue;
@@ -33,6 +35,7 @@ class _CustomSwitchButtonState extends State<CustomSwitchButton> {
             widget.onChanged!(_value);
           }
         });
+        context.read<MainCubit>().switchWeek(_value ? 1 : 0);
       },
       child: Row(
         children: [

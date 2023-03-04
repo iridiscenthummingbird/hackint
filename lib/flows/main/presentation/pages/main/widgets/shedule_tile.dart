@@ -5,20 +5,33 @@ import 'package:hackint/gen/assets.gen.dart';
 class SheduleTile extends StatelessWidget {
   const SheduleTile({
     super.key,
+    required this.number,
     required this.name,
     required this.category,
-    required this.roomNumber,
+    required this.auditory,
     required this.time,
   });
-
+  final int number;
   final String name;
   final String category;
-  final int roomNumber;
-  final String time;
+  final String auditory;
+  final TimeOfDay time;
+
+  Color colorFromCategory(String category) {
+    switch (category) {
+      case 'Lecture':
+        return const Color(0xFF3BC91D);
+      case 'Practice':
+        return const Color(0xFF4285F4);
+      case 'Laboratory':
+        return const Color(0xFFFBBC05);
+      default:
+        return const Color(0xFF3BC91D);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    var catColor = const Color(0xff3BC91D);
     return Material(
       elevation: 1,
       shadowColor: Colors.grey.shade100,
@@ -50,7 +63,7 @@ class SheduleTile extends StatelessWidget {
                         width: 32,
                         child: Center(
                           child: Text(
-                            '1',
+                            '$number',
                             style: Theme.of(context)
                                 .primaryTextTheme
                                 .displayLarge
@@ -62,13 +75,13 @@ class SheduleTile extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
                       Text(
-                        'Title',
+                        name,
                         style: Theme.of(context).primaryTextTheme.displayLarge,
                       ),
                       const Spacer(),
                       Container(
                         decoration: BoxDecoration(
-                          color: catColor,
+                          color: colorFromCategory(category),
                           borderRadius: const BorderRadius.all(
                             Radius.circular(16),
                           ),
@@ -77,7 +90,7 @@ class SheduleTile extends StatelessWidget {
                         width: 90,
                         child: Center(
                           child: Text(
-                            'Lecture',
+                            category,
                             style: Theme.of(context)
                                 .primaryTextTheme
                                 .titleMedium
@@ -97,7 +110,7 @@ class SheduleTile extends StatelessWidget {
                       SvgPicture.asset(Assets.icons.clockIcon.path),
                       const SizedBox(width: 10),
                       Text(
-                        '14:00',
+                        time.format(context),
                         style: Theme.of(context)
                             .primaryTextTheme
                             .titleMedium
@@ -108,7 +121,7 @@ class SheduleTile extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        '1122',
+                        auditory,
                         style: Theme.of(context)
                             .primaryTextTheme
                             .displayLarge
