@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hackint/flows/main/domain/entities/lesson.dart';
 import 'package:hackint/flows/main/presentation/pages/main/cubit/main_cubit.dart';
 import 'package:hackint/flows/main/presentation/pages/main/widgets/shedule_tile.dart';
 
+import '../../../../../../gen/assets.gen.dart';
 import '../../../../../../navigation/app_state_cubit/app_state_cubit.dart';
 
 class TabBody extends StatelessWidget {
@@ -17,8 +20,24 @@ class TabBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (lessons.isEmpty) {
-      return const Center(
-        child: Text('No lessons'),
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            Assets.icons.graduateIcon.path,
+            height: 150,
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'No lessons',
+            style: GoogleFonts.rubik(
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+          const SizedBox(height: 80),
+        ],
       );
     }
     return RefreshIndicator(
@@ -39,11 +58,8 @@ class TabBody extends StatelessWidget {
               vertical: 4,
             ),
             child: SheduleTile(
+              lesson: lesson,
               number: index + 1,
-              category: lesson.type,
-              name: lesson.subjectName,
-              auditory: lesson.auditory,
-              time: lesson.time,
             ),
           );
         },

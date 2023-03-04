@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hackint/flows/main/domain/entities/lesson.dart';
+import 'package:hackint/flows/main/presentation/pages/main/widgets/shedule_info_dialog.dart';
 import 'package:hackint/gen/assets.gen.dart';
 
 class SheduleTile extends StatelessWidget {
   const SheduleTile({
     super.key,
+    required this.lesson,
     required this.number,
-    required this.name,
-    required this.category,
-    required this.auditory,
-    required this.time,
   });
+
+  final Lesson lesson;
   final int number;
-  final String name;
-  final String category;
-  final String auditory;
-  final TimeOfDay time;
 
   Color colorFromCategory(String category) {
     switch (category) {
@@ -32,13 +29,22 @@ class SheduleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String name = lesson.subjectName;
+    final String category = lesson.type;
+    final String auditory = lesson.auditory;
+    final TimeOfDay time = lesson.time;
     return Material(
       elevation: 1,
       shadowColor: Colors.grey.shade100,
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () {},
+        onTap: () => showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return SheduleInfoDialog(lesson: lesson);
+          },
+        ),
         child: Ink(
           child: SizedBox(
             width: 380,

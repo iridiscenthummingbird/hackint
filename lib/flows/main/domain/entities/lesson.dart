@@ -10,6 +10,7 @@ class Lesson {
   final String subjectName;
   final String buildingId;
   final String type;
+  final String teacherName;
 
   Lesson({
     required this.id,
@@ -21,5 +22,6 @@ class Lesson {
     required this.subjectName,
     required this.buildingId,
     required this.type,
+    required this.teacherName,
   });
 }

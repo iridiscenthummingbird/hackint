@@ -30,6 +30,9 @@ class FirestoreLessons {
       final DocumentReference markerRef = doc.get('markerRef');
       final marker = await markerRef.get();
 
+      final DocumentReference teacherRef = doc.get('teacherRef');
+      final String teacherName = (await teacherRef.get()).get('name');
+
       lessons.add(
         Lesson(
           id: doc.id,
@@ -44,6 +47,7 @@ class FirestoreLessons {
           subjectName: doc.get('subjectName'),
           buildingId: marker.id,
           type: doc.get('type'),
+          teacherName: teacherName,
         ),
       );
     }
