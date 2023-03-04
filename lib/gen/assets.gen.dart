@@ -52,6 +52,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/clockIcon.svg
   SvgGenImage get clockIcon => const SvgGenImage('assets/icons/clockIcon.svg');
 
+  /// File path: assets/icons/clockPurpleIcon.svg
+  SvgGenImage get clockPurpleIcon =>
+      const SvgGenImage('assets/icons/clockPurpleIcon.svg');
+
   /// File path: assets/icons/dandruffIcon.svg
   SvgGenImage get dandruffIcon =>
       const SvgGenImage('assets/icons/dandruffIcon.svg');
@@ -66,9 +70,9 @@ class $AssetsIconsGen {
   SvgGenImage get fileAddingIcon =>
       const SvgGenImage('assets/icons/fileAddingIcon.svg');
 
-  /// File path: assets/icons/graduate Icon.svg
+  /// File path: assets/icons/graduateIcon.svg
   SvgGenImage get graduateIcon =>
-      const SvgGenImage('assets/icons/graduate Icon.svg');
+      const SvgGenImage('assets/icons/graduateIcon.svg');
 
   /// File path: assets/icons/locationIcon.svg
   SvgGenImage get locationIcon =>
@@ -112,6 +116,7 @@ class $AssetsIconsGen {
         calendarIcon,
         classRoomIcon,
         clockIcon,
+        clockPurpleIcon,
         dandruffIcon,
         date,
         dropDown,

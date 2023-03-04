@@ -8,7 +8,7 @@ class SheduleInfoDialog extends StatelessWidget {
   final String teacherName = 'Teodor';
   final String category = 'Ccaa';
   final int roomNumber = 12345;
-  final String duration = '10:18-99:11';
+  final String startTime = '10:15';
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +46,9 @@ class SheduleInfoDialog extends StatelessWidget {
                 info: roomNumber.toString(),
               ),
               RowInfo(
-                iconPath: Assets.icons.clockIcon.path,
-                title: 'Duration',
-                info: duration,
+                iconPath: Assets.icons.clockPurpleIcon.path,
+                title: 'Start Time',
+                info: startTime,
               ),
               const SizedBox(height: 55),
               Material(
@@ -114,10 +114,6 @@ class RowInfo extends StatelessWidget {
             iconPath,
             height: 24,
             width: 24,
-            colorFilter: const ColorFilter.mode(
-              Color(0xff643FDB),
-              BlendMode.srcIn,
-            ),
           ),
           const SizedBox(width: 10),
           Column(
