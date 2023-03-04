@@ -1,7 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hackint/flows/menu/presentation/pages/profile/profile.dart';
+import 'package:routemaster/routemaster.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../navigation/app_state_cubit/app_state_cubit.dart';
@@ -14,11 +15,7 @@ class MenuDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final email = FirebaseAuth.instance.currentUser?.email;
-    String userName = '';
-    if (email != null) {
-      userName = email.split('@')[0];
-    }
+    final user = (context.read<AppStateCubit>().state as AuthorizedState).user;
     return Drawer(
       width: (MediaQuery.of(context).size.width + 100) / 2,
       backgroundColor: const Color(0xff643FDB),
@@ -32,15 +29,15 @@ class MenuDrawer extends StatelessWidget {
               SvgPicture.asset(Assets.beluga.path),
               const SizedBox(height: 16),
               Text(
-                'Beluga Time',
+                'Beluga Study',
                 style: Theme.of(context).primaryTextTheme.titleLarge?.copyWith(
                       color: Theme.of(context).primaryColorLight,
                     ),
               ),
               const SizedBox(height: 32),
               CustomMenuItem(
-                itemText: userName,
-                iconPath: Assets.icons.userProfileIcon.path,
+                itemText: user.name!,
+                iconPath: Assets.icons.userIcon.path,
               ),
               const SizedBox(height: 12),
               Container(
@@ -50,28 +47,11 @@ class MenuDrawer extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               CustomMenuItem(
-                itemText: 'Calendar',
-                iconPath: Assets.icons.calendarIcon.path,
-                // TODO: go to CalendarPage
-                //onTap: () => Routemaster.of(context).push(CalendarPage.path),
-              ),
-              const SizedBox(height: 16),
-              CustomMenuItem(
-                itemText: 'Find Event',
-                iconPath: Assets.icons.searchIcon.path,
-                // TODO: go to FindEvent(mainPage?)
-                // onTap: () async {
-                //   final result = await Routemaster.of(context)
-                //       .push<bool>(FindEventPage.path)
-                //       .result;
-                //   if (result ?? false) {
-                //     context.read<MainPageCubit>().loadEvents(
-                //           (context.read<AppStateCubit>().state
-                //                   as AuthorizedState)
-                //               .user,
-                //         );
-                //   }
-                // },
+                itemText: 'Profile',
+                iconPath: Assets.icons.userProfileIcon.path,
+                onTap: () {
+                  Routemaster.of(context).push(ProfilePage.path);
+                },
               ),
               const Spacer(),
               CustomMenuItem(
