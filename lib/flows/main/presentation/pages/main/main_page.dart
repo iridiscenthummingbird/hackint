@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:hackint/flows/menu/presentation/widgets/menu_drawer.dart';
-import 'package:hackint/gen/assets.gen.dart';
 
+import 'widgets/custom_switch_button.dart';
 import 'widgets/shedule_tile.dart';
 
 class MainPage extends StatefulWidget {
@@ -29,15 +28,11 @@ class _MainPageState extends State<MainPage> {
                 color: const Color(0xff1C1243),
               ),
         ),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset(
-                Assets.icons.moreDotsIcon.path,
-              ),
-              splashRadius: 20,
+            padding: EdgeInsets.only(right: 10),
+            child: CustomSwitchButton(
+              initialValue: false,
             ),
           )
         ],
@@ -77,7 +72,7 @@ class _MainPageState extends State<MainPage> {
                                   : Colors.white,
                             ),
                             color: _selectedIndex == index
-                                ? const Color(0xff643FDB).withOpacity(0.3)
+                                ? const Color(0xff643FDB).withOpacity(0.15)
                                 : Colors.transparent,
                           ),
                           child: Center(
