@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hackint/flows/teacher/presentation/pages/main/cubit/teacher_main_cubit.dart';
+import 'package:routemaster/routemaster.dart';
 
 import '../../../../domain/shared_models/api/user_model.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../navigation/app_state_cubit/app_state_cubit.dart';
 import '../../../main/domain/entities/lesson.dart';
 import '../../../main/presentation/pages/main/widgets/shedule_info_dialog.dart';
+import '../../../menu/presentation/pages/map/map_page.dart';
 
 class TeacherSheduleInfoDialog extends StatelessWidget {
   const TeacherSheduleInfoDialog({
@@ -73,7 +74,12 @@ class TeacherSheduleInfoDialog extends StatelessWidget {
                 child: InkWell(
                   borderRadius: const BorderRadius.all(Radius.circular(4)),
                   onTap: () {
-                    print(lesson.buildingId);
+                    Routemaster.of(context).push(
+                      MapPage.path,
+                      queryParameters: {
+                        'markerId': lesson.buildingId,
+                      },
+                    );
                   },
                   child: Ink(
                     width: 250,
@@ -130,13 +136,6 @@ class TeacherSheduleInfoDialog extends StatelessWidget {
                         (context.read<AppStateCubit>().state as AuthorizedState)
                             .user,
                       );
-                      // context.read<TeacherMainCubit>().changeTime(
-                      //       time,
-                      //       lesson,
-                      //       (context.read<AppStateCubit>().state
-                      //               as AuthorizedState)
-                      //           .user,
-                      //     );
                       Navigator.pop(context);
                     }
                   },

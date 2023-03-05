@@ -8,6 +8,7 @@ import 'package:routemaster/routemaster.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../navigation/app_state_cubit/app_state_cubit.dart';
+import '../../../menu/presentation/pages/map/map_page.dart';
 import '../../../menu/presentation/widgets/custom_menu_item.dart';
 import '../pages/profile/profile.dart';
 
@@ -62,6 +63,14 @@ class TeacherMenuDrawer extends StatelessWidget {
                 iconPath: Assets.icons.notification.path,
                 onTap: () {
                   Routemaster.of(context).push(TeacherNotificationsPage.path);
+                },
+              ),
+              const SizedBox(height: 16),
+              CustomMenuItem(
+                itemText: 'University map',
+                iconPath: Assets.icons.universityMap.path,
+                onTap: () {
+                  Routemaster.of(context).push(MapPage.path);
                 },
               ),
               const Spacer(),
