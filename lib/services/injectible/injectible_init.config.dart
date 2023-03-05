@@ -19,13 +19,13 @@ import '../../domain/auth/repository/auth_repo.dart' as _i25;
 import '../../domain/auth/repository/auth_repo_impl.dart' as _i26;
 import '../../flows/auth/data/repositories/auth_repository_impl.dart' as _i28;
 import '../../flows/auth/domain/repositories/auth_repository.dart' as _i27;
-import '../../flows/auth/domain/usecases/sign_in.dart' as _i38;
-import '../../flows/auth/domain/usecases/sign_out.dart' as _i39;
-import '../../flows/auth/domain/usecases/sign_up.dart' as _i40;
+import '../../flows/auth/domain/usecases/sign_in.dart' as _i40;
+import '../../flows/auth/domain/usecases/sign_out.dart' as _i41;
+import '../../flows/auth/domain/usecases/sign_up.dart' as _i42;
 import '../../flows/auth/presentation/pages/sign_in/cubit/sign_in_cubit.dart'
-    as _i44;
+    as _i46;
 import '../../flows/auth/presentation/pages/sign_up/cubit/sign_up_cubit.dart'
-    as _i45;
+    as _i47;
 import '../../flows/complete_registration/data/datasources/complete_registration_datasource.dart'
     as _i30;
 import '../../flows/complete_registration/data/repositories/complete_registration_repository.dart'
@@ -37,15 +37,18 @@ import '../../flows/complete_registration/domain/usecases/complete_registration.
 import '../../flows/complete_registration/domain/usecases/get_groups.dart'
     as _i34;
 import '../../flows/complete_registration/presentation/pages/cubit/complete_registration_cubit.dart'
-    as _i43;
+    as _i45;
 import '../../flows/main/data/datasources/lessons_datasources.dart' as _i12;
 import '../../flows/main/data/repositories/lessons_repository.dart' as _i14;
 import '../../flows/main/domain/repositories/lessons_repository.dart' as _i13;
 import '../../flows/main/domain/usecase/get_lessons.dart' as _i35;
-import '../../flows/main/presentation/pages/main/cubit/main_cubit.dart' as _i37;
+import '../../flows/main/domain/usecase/get_notifications.dart' as _i36;
+import '../../flows/main/presentation/pages/main/cubit/main_cubit.dart' as _i38;
 import '../../flows/menu/presentation/pages/create_marker/cubit/create_marker_cubit.dart'
     as _i5;
 import '../../flows/menu/presentation/pages/map/cubit/map_cubit.dart' as _i15;
+import '../../flows/menu/presentation/pages/notifications/cubit/notifications_cubit.dart'
+    as _i39;
 import '../../flows/menu/presentation/pages/pick_marker_location/cubit/pick_marker_location_cubit.dart'
     as _i17;
 import '../../flows/splash/presentation/pages/splash/cubit/splash_cubit.dart'
@@ -55,17 +58,17 @@ import '../../flows/teacher/data/repositories/teacher_repository.dart' as _i22;
 import '../../flows/teacher/domain/repositories/teacher_repository.dart'
     as _i21;
 import '../../flows/teacher/domain/usecases/change_time.dart' as _i29;
-import '../../flows/teacher/domain/usecases/get_lessons.dart' as _i36;
+import '../../flows/teacher/domain/usecases/get_lessons.dart' as _i37;
 import '../../flows/teacher/presentation/pages/main/cubit/teacher_main_cubit.dart'
-    as _i41;
-import '../../navigation/app_state_cubit/app_state_cubit.dart' as _i42;
+    as _i43;
+import '../../navigation/app_state_cubit/app_state_cubit.dart' as _i44;
 import '../../themes/theme_data_values.dart' as _i23;
 import '../app_intenal_notification_system/bloc/app_intenal_notifications_bloc.dart'
     as _i3;
 import '../firestore/firestore_groups.dart' as _i8;
 import '../firestore/firestore_lessons.dart' as _i9;
 import '../firestore/firestore_users.dart' as _i10;
-import 'injectible_init.dart' as _i46; // ignore_for_file: unnecessary_lambdas
+import 'injectible_init.dart' as _i48; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -140,34 +143,38 @@ Future<_i1.GetIt> $initGetIt(
       () => _i34.GetGroupsUseCase(get<_i31.CompleteRegistrationRepositoryI>()));
   gh.factory<_i35.GetLessonsUseCase>(
       () => _i35.GetLessonsUseCase(get<_i13.LessonsRepositoryI>()));
-  gh.factory<_i36.GetTeachersLessonsUseCase>(
-      () => _i36.GetTeachersLessonsUseCase(get<_i21.TeacherRepositoryI>()));
-  gh.factory<_i37.MainCubit>(
-      () => _i37.MainCubit(get<_i35.GetLessonsUseCase>()));
-  gh.factory<_i38.SignInUseCase>(
-      () => _i38.SignInUseCase(get<_i27.AuthRepositoryI>()));
-  gh.factory<_i39.SignOutUseCase>(
-      () => _i39.SignOutUseCase(get<_i27.AuthRepositoryI>()));
-  gh.factory<_i40.SignUpUseCase>(
-      () => _i40.SignUpUseCase(get<_i27.AuthRepositoryI>()));
-  gh.factory<_i41.TeacherMainCubit>(() => _i41.TeacherMainCubit(
-        get<_i36.GetTeachersLessonsUseCase>(),
+  gh.factory<_i36.GetNotificationsUseCase>(
+      () => _i36.GetNotificationsUseCase(get<_i13.LessonsRepositoryI>()));
+  gh.factory<_i37.GetTeachersLessonsUseCase>(
+      () => _i37.GetTeachersLessonsUseCase(get<_i21.TeacherRepositoryI>()));
+  gh.factory<_i38.MainCubit>(
+      () => _i38.MainCubit(get<_i35.GetLessonsUseCase>()));
+  gh.factory<_i39.NotificationsCubit>(
+      () => _i39.NotificationsCubit(get<_i36.GetNotificationsUseCase>()));
+  gh.factory<_i40.SignInUseCase>(
+      () => _i40.SignInUseCase(get<_i27.AuthRepositoryI>()));
+  gh.factory<_i41.SignOutUseCase>(
+      () => _i41.SignOutUseCase(get<_i27.AuthRepositoryI>()));
+  gh.factory<_i42.SignUpUseCase>(
+      () => _i42.SignUpUseCase(get<_i27.AuthRepositoryI>()));
+  gh.factory<_i43.TeacherMainCubit>(() => _i43.TeacherMainCubit(
+        get<_i37.GetTeachersLessonsUseCase>(),
         get<_i29.ChangeTimeUseCase>(),
       ));
-  gh.factory<_i42.AppStateCubit>(() => _i42.AppStateCubit(
+  gh.factory<_i44.AppStateCubit>(() => _i44.AppStateCubit(
         authRepository: get<_i25.AuthRepositoryI>(),
         firebaseAuth: get<_i6.FirebaseAuth>(),
       ));
-  gh.factory<_i43.CompleteRegistrationCubit>(
-      () => _i43.CompleteRegistrationCubit(
+  gh.factory<_i45.CompleteRegistrationCubit>(
+      () => _i45.CompleteRegistrationCubit(
             get<_i34.GetGroupsUseCase>(),
             get<_i33.CompleteRegistrationUseCase>(),
           ));
-  gh.factory<_i44.SignInCubit>(
-      () => _i44.SignInCubit(get<_i38.SignInUseCase>()));
-  gh.factory<_i45.SignUpCubit>(
-      () => _i45.SignUpCubit(get<_i40.SignUpUseCase>()));
+  gh.factory<_i46.SignInCubit>(
+      () => _i46.SignInCubit(get<_i40.SignInUseCase>()));
+  gh.factory<_i47.SignUpCubit>(
+      () => _i47.SignUpCubit(get<_i42.SignUpUseCase>()));
   return get;
 }
 
-class _$RegisterModule extends _i46.RegisterModule {}
+class _$RegisterModule extends _i48.RegisterModule {}

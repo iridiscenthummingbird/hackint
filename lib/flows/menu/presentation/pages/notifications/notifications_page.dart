@@ -1,11 +1,15 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackint/flows/menu/presentation/pages/notifications/cubit/notifications_cubit.dart';
 import 'package:hackint/flows/menu/presentation/pages/widgets/notification_card.dart';
 import 'package:hackint/gen/assets.gen.dart';
+import 'package:hackint/services/injectible/injectible_init.dart';
+import 'package:hackint/widgets/circular_loading.dart';
 import 'package:routemaster/routemaster.dart';
+
+import '../../../../../navigation/app_state_cubit/app_state_cubit.dart';
 
 class NotificationsPage extends StatelessWidget {
   const NotificationsPage({super.key});
@@ -14,14 +18,8 @@ class NotificationsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<MyNotification> notifications = List.generate(
-      Random().nextInt(3),
-      (index) => const MyNotification(
-        title: 'Warning',
-        description:
-            'Change in schedule! The 5th lesson will be held at 12:00.',
-      ),
-    );
+    final user = (context.read<AppStateCubit>().state as AuthorizedState).user;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -38,43 +36,54 @@ class NotificationsPage extends StatelessWidget {
           ),
         ),
       ),
-      body: notifications.isNotEmpty
-          ? ListView.separated(
-              itemCount: notifications.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: NotificationCard(
-                    title: notifications[index].title,
-                    description: notifications[index].description,
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const SizedBox(height: 12);
-              },
-            )
-          : Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    Assets.icons.noDisturb.path,
-                    height: 150,
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'No notifications',
-                    style: GoogleFonts.rubik(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).primaryColor,
+      body: BlocProvider(
+        create: (context) =>
+            getIt<NotificationsCubit>()..getNotifications(user.group!),
+        child: BlocBuilder<NotificationsCubit, NotificationsState>(
+          builder: (context, state) {
+            if (state is NotificationsLoading) {
+              return const CircularLoading();
+            } else if (state.notifications.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      Assets.icons.noDisturb.path,
+                      height: 150,
                     ),
-                  ),
-                  const SizedBox(height: 80),
-                ],
-              ),
-            ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'No notifications',
+                      style: GoogleFonts.rubik(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                    const SizedBox(height: 80),
+                  ],
+                ),
+              );
+            } else {
+              return ListView.separated(
+                itemCount: state.notifications.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: NotificationCard(
+                      notification: state.notifications[index],
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(height: 12);
+                },
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }

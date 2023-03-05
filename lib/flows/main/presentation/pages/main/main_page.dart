@@ -57,6 +57,7 @@ class MainPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: Theme.of(context).primaryColor.withOpacity(0.15),
               ),
+              splashBorderRadius: BorderRadius.circular(20),
               tabs: week.map((day) => Tab(text: day)).toList(),
             ),
           ),

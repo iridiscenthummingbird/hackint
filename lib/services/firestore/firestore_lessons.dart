@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hackint/domain/shared_models/api/user_model.dart';
 import 'package:hackint/flows/complete_registration/domain/entities/group.dart';
+import 'package:hackint/flows/main/domain/entities/change_notification.dart';
 import 'package:hackint/flows/main/domain/entities/lesson.dart';
 import 'package:hackint/flows/teacher/domain/usecases/change_time.dart';
 import 'package:injectable/injectable.dart';
@@ -97,5 +98,26 @@ class FirestoreLessons {
       );
     }
     return lessons;
+  }
+
+  Future<List<ChangeNotification>> getNotifications(Group group) async {
+    final result = await _notificationsCollection
+        .where('groups', arrayContains: group.reference)
+        .get();
+
+    final List<ChangeNotification> notifications = [];
+
+    for (final doc in result.docs) {
+      notifications.add(
+        ChangeNotification(
+          id: doc.id,
+          title: doc.get('title'),
+          description: doc.get('description'),
+          dateTime: (doc.get('dateTime') as Timestamp).toDate(),
+        ),
+      );
+    }
+
+    return notifications;
   }
 }

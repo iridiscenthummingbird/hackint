@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hackint/flows/main/domain/entities/lesson.dart';
 import 'package:hackint/flows/main/presentation/pages/main/widgets/shedule_info_dialog.dart';
 import 'package:hackint/gen/assets.gen.dart';
 
 import '../../../../../../domain/shared_models/api/user_model.dart';
-import '../../../../../teacher/presentation/pages/main/cubit/teacher_main_cubit.dart';
 import '../../../../../teacher/presentation/widgets/teacher_dialog.dart';
 
 class SheduleTile extends StatelessWidget {
