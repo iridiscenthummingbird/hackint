@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hackint/domain/core/errors/failures.dart';
 import 'package:hackint/flows/menu/domain/enittities/marker_point.dart';
 import 'package:hackint/domain/shared_models/api/marker_type.dart';
+import 'package:hackint/flows/menu/domain/usecases/add_marker_point.dart';
 import 'package:hackint/flows/menu/presentation/pages/map/enums/markers_icons.dart';
 import 'package:hackint/flows/menu/presentation/pages/map/helpers/marker_helper.dart';
 import 'package:injectable/injectable.dart';
@@ -13,7 +15,7 @@ part 'pick_marker_location_state.dart';
 
 @injectable
 class PickMarkerLocationCubit extends Cubit<PickMarkerLocationState> {
-  PickMarkerLocationCubit()
+  PickMarkerLocationCubit(this.addMarkerPointUseCase)
       : super(
           const Loading(mapType: MapType.normal),
         );
@@ -21,22 +23,24 @@ class PickMarkerLocationCubit extends Cubit<PickMarkerLocationState> {
   late GoogleMapController controller;
   late Map<MarkersIcons, Uint8List> markersIcons;
 
+  final AddMarkerPointUseCase addMarkerPointUseCase;
+
   static const CameraPosition initialCameraPosition = CameraPosition(
     target: LatLng(50.448899667450405, 30.456975575830512),
     zoom: 15,
   );
 
-  Future<void> loadMapData() async {
+  Future<void> loadMapData(int iconTypeIndex) async {
     markersIcons =
         await MarkerHelper.initMarkersIcons(state.mapType == MapType.normal);
     final MarkerPoint markerPoint = MarkerPoint(
       name: 'Marker one',
       description: '',
-      type: const MarkerType(
+      type: MarkerType(
         id: '1',
         name: 'Shop',
         color: Colors.red,
-        icon: MarkersIcons.shop,
+        icon: MarkersIcons.values[iconTypeIndex],
       ),
       latitude: initialCameraPosition.target.latitude,
       longitude: initialCameraPosition.target.longitude,
@@ -62,6 +66,45 @@ class PickMarkerLocationCubit extends Cubit<PickMarkerLocationState> {
         markerPoint: markerPoint,
         mapType: mapType ?? state.mapType,
       ),
+    );
+  }
+
+  Future<void> addMarkerPoint({
+    required String name,
+    required String description,
+    required String typeId,
+    required double lat,
+    required double lon,
+  }) async {
+    AddMarkerPointParameters params = AddMarkerPointParameters(
+      name: name,
+      description: description,
+      typeId: typeId,
+      lat: lat,
+      lon: lon,
+    );
+
+    final result = await addMarkerPointUseCase(params);
+    result.fold(
+      (failure) {
+        emit(
+          PickLocationError(
+            markers: state.markers,
+            markerPoint: state.markerPoint,
+            mapType: state.mapType,
+            failure: failure,
+          ),
+        );
+      },
+      (_) {
+        emit(
+          MarkerAdded(
+            markers: state.markers,
+            markerPoint: state.markerPoint,
+            mapType: state.mapType,
+          ),
+        );
+      },
     );
   }
 

@@ -8,11 +8,13 @@ import 'package:injectable/injectable.dart';
 @injectable
 class FirestoreMarkers {
   FirestoreMarkers(this.firebaseFirestore)
-      : _markersCollection = firebaseFirestore.collection('markers');
+      : _markersCollection = firebaseFirestore.collection('markers'),
+        _markersTypesCollection = firebaseFirestore.collection('markersTypes');
 
   final FirebaseFirestore firebaseFirestore;
 
   final CollectionReference<Map<String, dynamic>> _markersCollection;
+  final CollectionReference<Map<String, dynamic>> _markersTypesCollection;
 
   Future<List<MarkerPointModel>> getMarkerPoints() async {
     final result = await _markersCollection.get();
@@ -44,5 +46,45 @@ class FirestoreMarkers {
     }
 
     return markerPoints;
+  }
+
+  Future<List<MarkerType>> getMarkerTypes() async {
+    final result = await _markersTypesCollection.get();
+    final List<MarkerType> types = [];
+    for (final doc in result.docs) {
+      final typeData = doc.data();
+      types.add(
+        MarkerType(
+          id: doc.id,
+          name: typeData['name'],
+          color: Color(
+            typeData['color'],
+          ),
+          icon: MarkersIconsMapper.toEnum(
+            typeData['markerIcon'],
+          ),
+        ),
+      );
+    }
+
+    return types;
+  }
+
+  Future<void> addMarkerPoint({
+    required String name,
+    required String description,
+    required String typeId,
+    required double lat,
+    required double lon,
+  }) async {
+    final typeRef = _markersTypesCollection.doc(typeId);
+
+    await _markersCollection.add({
+      'name': name,
+      'description': description,
+      'lat': lat,
+      'lon': lon,
+      'typeRef': typeRef,
+    });
   }
 }
