@@ -7,6 +7,7 @@ import 'package:hackint/flows/menu/presentation/pages/map/cubit/map_cubit.dart';
 import 'package:hackint/flows/menu/presentation/pages/map/widgets/add_marker_button.dart';
 import 'package:hackint/flows/menu/presentation/pages/map/widgets/marker_info_pop_up.dart';
 import 'package:hackint/gen/assets.gen.dart';
+import 'package:hackint/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:hackint/services/injectible/injectible_init.dart';
 import 'package:hackint/widgets/circular_loading.dart';
 import 'package:routemaster/routemaster.dart';
@@ -74,6 +75,9 @@ class MapPage extends StatelessWidget {
                 body: Builder(
                   builder: (context) {
                     if (state is! Loading) {
+                      final user = (context.read<AppStateCubit>().state
+                          as AuthorizedState).user;
+
                       return Stack(
                         children: [
                           GoogleMap(
@@ -86,22 +90,24 @@ class MapPage extends StatelessWidget {
                             myLocationEnabled: true,
                             myLocationButtonEnabled: true,
                           ),
-                          Positioned(
-                            right: 30,
-                            bottom: 30,
-                            child: AddMarkerButton(
-                              onPressed: () async {
-                                final markerAdded = await Routemaster.of(
-                                        context)
-                                    .push<bool>(path + CreateMarkerPage.path)
-                                    .result;
-                                if (markerAdded ?? false) {
-                                  mapCubit.emitLoading();
-                                  await mapCubit.loadMapData();
-                                }
-                              },
+                          if (user.isAdmin) ...{
+                            Positioned(
+                              right: 30,
+                              bottom: 30,
+                              child: AddMarkerButton(
+                                onPressed: () async {
+                                  final markerAdded = await Routemaster.of(
+                                          context)
+                                      .push<bool>(path + CreateMarkerPage.path)
+                                      .result;
+                                  if (markerAdded ?? false) {
+                                    mapCubit.emitLoading();
+                                    await mapCubit.loadMapData();
+                                  }
+                                },
+                              ),
                             ),
-                          )
+                          }
                         ],
                       );
                     }
