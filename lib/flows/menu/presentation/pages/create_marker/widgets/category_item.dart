@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hackint/flows/menu/domain/enittities/marker_type.dart';
+import 'package:hackint/domain/shared_models/api/marker_type.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({

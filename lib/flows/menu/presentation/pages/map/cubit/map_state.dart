@@ -36,8 +36,19 @@ class MarkerPressed extends MapDataLoaded {
     super.markers,
     super.markerPoints,
     required super.mapType,
-    required this.markerId,
+    required this.pressedMarkerPoint,
   });
 
-  final String markerId;
+  final MarkerPoint pressedMarkerPoint;
+}
+
+class MapError extends MapDataLoaded {
+  const MapError({
+    super.markers,
+    super.markerPoints,
+    required super.mapType,
+    required this.failure,
+  });
+
+  final Failure failure;
 }

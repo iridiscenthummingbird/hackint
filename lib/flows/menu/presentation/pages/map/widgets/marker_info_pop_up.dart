@@ -6,6 +6,7 @@ class MarkerInfoPopUp extends StatelessWidget {
   const MarkerInfoPopUp({
     required this.title,
     required this.description,
+    required this.typeName,
     required this.typeColor,
     required this.onClosed,
     Key? key,
@@ -13,6 +14,7 @@ class MarkerInfoPopUp extends StatelessWidget {
 
   final String title;
   final String description;
+  final String typeName;
   final Color typeColor;
   final VoidCallback onClosed;
 
@@ -68,7 +70,7 @@ class MarkerInfoPopUp extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             MarkerTypeItem(
-              title: 'Shop',
+              title: typeName,
               color: typeColor,
             ),
             Padding(

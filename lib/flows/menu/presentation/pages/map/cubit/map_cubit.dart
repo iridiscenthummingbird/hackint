@@ -1,10 +1,12 @@
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hackint/domain/core/errors/failures.dart';
+import 'package:hackint/domain/core/usecase/usecase.dart';
 import 'package:hackint/flows/menu/domain/enittities/marker_point.dart';
-import 'package:hackint/flows/menu/domain/enittities/marker_type.dart';
+import 'package:hackint/flows/menu/domain/usecases/get_marker_points.dart';
 import 'package:hackint/flows/menu/presentation/pages/map/enums/markers_icons.dart';
 import 'package:hackint/flows/menu/presentation/pages/map/helpers/location_permissions_helper.dart';
 import 'package:hackint/flows/menu/presentation/pages/map/helpers/marker_helper.dart';
@@ -14,8 +16,9 @@ part 'map_state.dart';
 
 @injectable
 class MapCubit extends Cubit<MapState> {
-  MapCubit()
-      : super(
+  MapCubit(
+    this.getMarkerPointsUseCase,
+  ) : super(
           const Loading(
             mapType: MapType.normal,
           ),
@@ -24,36 +27,12 @@ class MapCubit extends Cubit<MapState> {
   late GoogleMapController controller;
   late Map<MarkersIcons, Uint8List> markersIcons;
 
+  final GetMarkerPointsUseCase getMarkerPointsUseCase;
+
   static const CameraPosition initialCameraPosition = CameraPosition(
     target: LatLng(50.448899667450405, 30.456975575830512),
     zoom: 15,
   );
-  final List<MarkerPoint> mockedMarkers = const [
-    MarkerPoint(
-      id: '1',
-      name: 'Marker one',
-      type: MarkerType(
-        id: '1',
-        name: 'Shop',
-        color: Colors.red,
-        icon: MarkersIcons.defaultMarker,
-      ),
-      latitude: 50.448899667450405,
-      longitude: 30.456975575830512,
-    ),
-    MarkerPoint(
-      id: '2',
-      name: 'Marker two',
-      type: MarkerType(
-        id: '2',
-        name: 'Shop',
-        color: Colors.red,
-        icon: MarkersIcons.defaultMarker,
-      ),
-      latitude: 50.4474248217571,
-      longitude: 30.453838804731927,
-    ),
-  ];
 
   Future<void> initMapData() async {
     markersIcons =
@@ -63,9 +42,22 @@ class MapCubit extends Cubit<MapState> {
   }
 
   Future<void> loadMapData() async {
-    // TODO: load map data from db
-    await Future.delayed(const Duration(seconds: 2));
-    await displayMarkers(mockedMarkers);
+    final result = await getMarkerPointsUseCase(NoParams());
+    result.fold(
+      (failure) {
+        emit(
+          MapError(
+            markers: state.markers,
+            markerPoints: state.markerPoints,
+            mapType: state.mapType,
+            failure: failure,
+          ),
+        );
+      },
+      (markerPoints) async {
+        await displayMarkers(markerPoints);
+      },
+    );
   }
 
   Future<void> displayMarkers(List<MarkerPoint> markerPoints,
@@ -119,14 +111,30 @@ class MapCubit extends Cubit<MapState> {
   }
 
   void _onMarkerPressed(String id) {
-    emit(
-      MarkerPressed(
-        markers: state.markers,
-        markerPoints: state.markerPoints,
-        mapType: state.mapType,
-        markerId: id,
-      ),
-    );
+    final pressedMarkerPoint =
+        state.markerPoints.firstWhereOrNull((m) => m.id == id);
+
+    if (pressedMarkerPoint != null) {
+      emit(
+        MarkerPressed(
+          markers: state.markers,
+          markerPoints: state.markerPoints,
+          mapType: state.mapType,
+          pressedMarkerPoint: pressedMarkerPoint,
+        ),
+      );
+    } else {
+      emit(
+        MapError(
+          markers: state.markers,
+          markerPoints: state.markerPoints,
+          mapType: state.mapType,
+          failure: const OtherFailure(
+            message: 'ERROR: Could not find info about the place',
+          ),
+        ),
+      );
+    }
   }
 
   @override

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hackint/flows/menu/domain/enittities/marker_point.dart';
-import 'package:hackint/flows/menu/domain/enittities/marker_type.dart';
+import 'package:hackint/domain/shared_models/api/marker_type.dart';
 import 'package:hackint/flows/menu/presentation/pages/map/enums/markers_icons.dart';
 import 'package:hackint/flows/menu/presentation/pages/map/helpers/marker_helper.dart';
 import 'package:injectable/injectable.dart';
@@ -31,11 +31,12 @@ class PickMarkerLocationCubit extends Cubit<PickMarkerLocationState> {
         await MarkerHelper.initMarkersIcons(state.mapType == MapType.normal);
     final MarkerPoint markerPoint = MarkerPoint(
       name: 'Marker one',
+      description: '',
       type: const MarkerType(
         id: '1',
         name: 'Shop',
         color: Colors.red,
-        icon: MarkersIcons.defaultMarker,
+        icon: MarkersIcons.shop,
       ),
       latitude: initialCameraPosition.target.latitude,
       longitude: initialCameraPosition.target.longitude,

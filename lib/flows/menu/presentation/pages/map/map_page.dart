@@ -29,10 +29,10 @@ class MapPage extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) => MarkerInfoPopUp(
-                  title: 'FICT KPI',
-                  description:
-                      'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
-                  typeColor: const Color(0xffFF8A00),
+                  title: state.pressedMarkerPoint.name,
+                  description: state.pressedMarkerPoint.description,
+                  typeName: state.pressedMarkerPoint.type.name,
+                  typeColor: state.pressedMarkerPoint.type.color,
                   onClosed: () {
                     Routemaster.of(context).pop();
                   },
@@ -40,6 +40,10 @@ class MapPage extends StatelessWidget {
                 barrierDismissible: false,
               );
               mapCubit.resetMap();
+            } else if (state is MapError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.failure.message)),
+              );
             }
           },
           child: BlocBuilder<MapCubit, MapState>(
@@ -84,8 +88,10 @@ class MapPage extends StatelessWidget {
                             bottom: 30,
                             child: AddMarkerButton(
                               onPressed: () async {
-                                final markerAdded = await Routemaster.of(context)
-                                    .push<bool>(path + CreateMarkerPage.path).result;
+                                final markerAdded = await Routemaster.of(
+                                        context)
+                                    .push<bool>(path + CreateMarkerPage.path)
+                                    .result;
                                 if (markerAdded ?? false) {
                                   mapCubit.emitLoading();
                                   await mapCubit.loadMapData();

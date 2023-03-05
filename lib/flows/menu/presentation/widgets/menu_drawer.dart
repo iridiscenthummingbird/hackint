@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hackint/flows/menu/presentation/pages/map/map_page.dart';
 import 'package:hackint/flows/menu/presentation/pages/notifications/notifications_page.dart';
 import 'package:hackint/flows/menu/presentation/pages/profile/profile.dart';
 import 'package:routemaster/routemaster.dart';
@@ -57,9 +58,17 @@ class MenuDrawer extends StatelessWidget {
               const SizedBox(height: 16),
               CustomMenuItem(
                 itemText: 'Notifications',
-                iconPath: Assets.icons.notification.path,
+                iconPath: Assets.icons.universityMap.path,
                 onTap: () {
                   Routemaster.of(context).push(NotificationsPage.path);
+                },
+              ),
+              const SizedBox(height: 16),
+              CustomMenuItem(
+                itemText: 'University map',
+                iconPath: Assets.icons.notification.path,
+                onTap: () {
+                  Routemaster.of(context).push(MapPage.path);
                 },
               ),
               const Spacer(),

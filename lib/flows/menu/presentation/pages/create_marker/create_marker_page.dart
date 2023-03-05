@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hackint/flows/menu/domain/enittities/marker_type.dart';
+import 'package:hackint/domain/shared_models/api/marker_type.dart';
 import 'package:hackint/flows/menu/presentation/pages/create_marker/cubit/create_marker_cubit.dart';
 import 'package:hackint/flows/menu/presentation/pages/create_marker/widgets/app_text_field.dart';
 import 'package:hackint/flows/menu/presentation/pages/create_marker/widgets/category_item.dart';
@@ -103,7 +103,7 @@ class CreateMarkerPage extends StatelessWidget {
                                     id: '1',
                                     name: 'Hostel',
                                     color: Colors.red,
-                                    icon: MarkersIcons.defaultMarker,
+                                    icon: MarkersIcons.shop,
                                   ),
                                   isSelected: true,
                                   onPressed: () {},
@@ -113,7 +113,7 @@ class CreateMarkerPage extends StatelessWidget {
                                     id: '2',
                                     name: 'Shop',
                                     color: Colors.red,
-                                    icon: MarkersIcons.defaultMarker,
+                                    icon: MarkersIcons.shop,
                                   ),
                                   isSelected: false,
                                   onPressed: () {},
@@ -123,7 +123,7 @@ class CreateMarkerPage extends StatelessWidget {
                                     id: '3',
                                     name: 'Educational',
                                     color: Colors.red,
-                                    icon: MarkersIcons.defaultMarker,
+                                    icon: MarkersIcons.shop,
                                   ),
                                   isSelected: false,
                                   onPressed: () {},
@@ -133,7 +133,7 @@ class CreateMarkerPage extends StatelessWidget {
                                     id: '4',
                                     name: 'Playground',
                                     color: Colors.red,
-                                    icon: MarkersIcons.defaultMarker,
+                                    icon: MarkersIcons.shop,
                                   ),
                                   isSelected: false,
                                   onPressed: () {},
@@ -143,7 +143,7 @@ class CreateMarkerPage extends StatelessWidget {
                                     id: '5',
                                     name: 'Polyana',
                                     color: Colors.red,
-                                    icon: MarkersIcons.defaultMarker,
+                                    icon: MarkersIcons.shop,
                                   ),
                                   isSelected: false,
                                   onPressed: () {},
