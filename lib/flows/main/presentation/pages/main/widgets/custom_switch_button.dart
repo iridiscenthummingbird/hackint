@@ -39,11 +39,11 @@ class _CustomSwitchButtonState extends State<CustomSwitchButton> {
       },
       child: Row(
         children: [
-          _SwitchTile(
+          SwitchTile(
             value: _value,
             text: 'First',
           ),
-          _SwitchTile(
+          SwitchTile(
             value: !_value,
             text: 'Second',
           ),
@@ -53,8 +53,12 @@ class _CustomSwitchButtonState extends State<CustomSwitchButton> {
   }
 }
 
-class _SwitchTile extends StatelessWidget {
-  const _SwitchTile({required this.text, required this.value});
+class SwitchTile extends StatelessWidget {
+  const SwitchTile({
+    super.key,
+    required this.text,
+    required this.value,
+  });
 
   final String text;
   final bool value;

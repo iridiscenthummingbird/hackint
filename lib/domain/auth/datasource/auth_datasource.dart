@@ -28,11 +28,7 @@ class AuthDataSourceImpl implements AuthDataSourceI {
         email: email,
         password: password,
       );
-      final userEmail = userCredential.user!.email!;
-      final userExists = await firestoreUsers.checkUserExists(email);
-      if (!userExists) {
-        await firestoreUsers.addUser(userEmail);
-      }
+
       return userCredential;
     } on FirebaseAuthException catch (exception) {
       throw (ServerFailure(message: exception.message ?? exception.code));

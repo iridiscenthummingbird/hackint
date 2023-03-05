@@ -193,12 +193,10 @@ class Assets {
   static const AssetGenImage logoBackground =
       AssetGenImage('assets/logo_background.png');
   static const $AssetsMarkersGen markers = $AssetsMarkersGen();
-  static const AssetGenImage noEvents = AssetGenImage('assets/no_events.png');
   static const SvgGenImage uploadImage = SvgGenImage('assets/uploadImage.svg');
 
   /// List of all assets
-  List<dynamic> get values =>
-      [beluga, belugaLogo, logoBackground, noEvents, uploadImage];
+  List<dynamic> get values => [beluga, belugaLogo, logoBackground, uploadImage];
 }
 
 class AssetGenImage {

@@ -58,9 +58,9 @@ class SheduleInfoDialog extends StatelessWidget {
               Material(
                 elevation: 1,
                 shadowColor: Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: const BorderRadius.all(Radius.circular(4)),
                 child: InkWell(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: const BorderRadius.all(Radius.circular(4)),
                   onTap: () {
                     Routemaster.of(context).push(
                       MapPage.path,
@@ -70,25 +70,23 @@ class SheduleInfoDialog extends StatelessWidget {
                     );
                   },
                   child: Ink(
-                    child: Container(
-                      width: 250,
-                      height: 40,
-                      decoration: const BoxDecoration(
-                        color: Color(0xff643FDB),
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Show building location',
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .displayLarge
-                              ?.copyWith(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                                color: const Color(0xffFFFFFF),
-                              ),
-                        ),
+                    width: 250,
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      color: Color(0xff643FDB),
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Show building location',
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .displayLarge
+                            ?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: const Color(0xffFFFFFF),
+                            ),
                       ),
                     ),
                   ),

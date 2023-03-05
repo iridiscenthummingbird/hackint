@@ -1,15 +1,14 @@
-# hackint
+# Beluga Study
 
-A new Flutter project.
+Developed by The Big Bad Beluga Whales
 
-## Getting Started
+- [User manual](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- [Firebase App Distribution](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- [APK](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- [Presentation](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- [Video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- [Additional information](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,

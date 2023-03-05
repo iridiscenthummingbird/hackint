@@ -8,11 +8,13 @@ import '../../flows/complete_registration/domain/usecases/complete_registration.
 @injectable
 class FirestoreUsers {
   FirestoreUsers(this.firebaseFirestore)
-      : _usersCollection = firebaseFirestore.collection('users');
+      : _usersCollection = firebaseFirestore.collection('users'),
+        _teachersCollection = firebaseFirestore.collection('teachers');
 
   final FirebaseFirestore firebaseFirestore;
 
   final CollectionReference<Map<String, dynamic>> _usersCollection;
+  final CollectionReference<Map<String, dynamic>> _teachersCollection;
 
   Future<bool> checkUserExists(String email) async {
     final result = await _usersCollection
@@ -34,6 +36,23 @@ class FirestoreUsers {
   Future<UserModel> getUserByEmail(String email) async {
     final result =
         await _usersCollection.where('email', isEqualTo: email).get();
+    if (result.docs.isEmpty) {
+      final teacherResult =
+          await _teachersCollection.where('email', isEqualTo: email).get();
+      if (teacherResult.docs.isEmpty) {
+        throw 'No user with this email';
+      }
+      final teacher = teacherResult.docs.first;
+
+      return UserModel(
+        id: teacher.id,
+        email: email,
+        name: teacher.get('name'),
+        isStudent: false,
+        isCompletedRegistration: true,
+        teacherRef: teacher.reference,
+      );
+    }
     final user = result.docs.first;
     final userData = user.data();
     Group? group;
@@ -54,6 +73,7 @@ class FirestoreUsers {
       studentId: userData['studentsId'],
       name: userData['name'],
       group: group,
+      isStudent: true,
     );
   }
 

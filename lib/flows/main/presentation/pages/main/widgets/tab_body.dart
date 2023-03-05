@@ -6,16 +6,20 @@ import 'package:hackint/flows/main/domain/entities/lesson.dart';
 import 'package:hackint/flows/main/presentation/pages/main/cubit/main_cubit.dart';
 import 'package:hackint/flows/main/presentation/pages/main/widgets/shedule_tile.dart';
 
+import '../../../../../../domain/shared_models/api/user_model.dart';
 import '../../../../../../gen/assets.gen.dart';
 import '../../../../../../navigation/app_state_cubit/app_state_cubit.dart';
+import '../../../../../teacher/presentation/pages/main/cubit/teacher_main_cubit.dart';
 
 class TabBody extends StatelessWidget {
   const TabBody({
     super.key,
     required this.lessons,
+    this.isTeacher = false,
   });
 
   final List<Lesson> lessons;
+  final bool isTeacher;
 
   double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 
@@ -59,6 +63,10 @@ class TabBody extends StatelessWidget {
         itemCount: lessons.length,
         itemBuilder: (context, index) {
           final lesson = lessons[index];
+          Function(TimeOfDay, Lesson, UserModel) changeTime = (_, __, ___) {};
+          if (isTeacher) {
+            changeTime = context.read<TeacherMainCubit>().changeTime;
+          }
           return Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -67,6 +75,8 @@ class TabBody extends StatelessWidget {
             child: SheduleTile(
               lesson: lesson,
               number: index + 1,
+              isTeacher: isTeacher,
+              changeTime: changeTime,
             ),
           );
         },

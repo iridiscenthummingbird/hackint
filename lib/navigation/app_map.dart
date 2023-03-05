@@ -8,16 +8,28 @@ import 'package:routemaster/routemaster.dart';
 import '../flows/complete_registration/presentation/pages/complete_registration.dart';
 import '../flows/main/presentation/pages/main/main_page.dart';
 import '../flows/menu/presentation/pages/notifications/notifications_page.dart';
+import '../flows/teacher/presentation/pages/main/main.dart';
+import '../flows/teacher/presentation/pages/notifications/notifications.dart';
+import '../flows/teacher/presentation/pages/profile/profile.dart';
 import 'helpers/route_map_initial_page.dart';
 
 class AppRouteMap extends RouteMap {
   AppRouteMap({required this.user})
       : super(
           onUnknownRoute: _onUnknownRoute,
-          routes: user.isCompletedRegistration
-              ? _routes()
-              : _completeRegistrationRoute(user),
+          routes: _chooseRoute(user),
         );
+
+  static Map<String, RouteSettings Function(RouteData)> _chooseRoute(
+      UserModel user) {
+    if (!user.isStudent) {
+      return _routesTeacher();
+    } else if (user.isCompletedRegistration) {
+      return _routes();
+    } else {
+      return _completeRegistrationRoute(user);
+    }
+  }
 
   final UserModel user;
 
@@ -63,6 +75,26 @@ class AppRouteMap extends RouteMap {
                   typeIndex: int.parse(routeData.queryParameters['typeIndex']!),
                 ),
               ),
+    };
+  }
+
+  static Map<String, PageBuilder> _routesTeacher() {
+    return {
+      TeacherMainPage.path: (_) => _createMaterialPage(
+            const RouteMapInitialPage(
+              child: TeacherMainPage(),
+            ),
+          ),
+      TeacherProfilePage.path: (_) => _createMaterialPage(
+            const RouteMapInitialPage(
+              child: TeacherProfilePage(),
+            ),
+          ),
+      TeacherNotificationsPage.path: (_) => _createMaterialPage(
+            const RouteMapInitialPage(
+              child: TeacherNotificationsPage(),
+            ),
+          ),
     };
   }
 
