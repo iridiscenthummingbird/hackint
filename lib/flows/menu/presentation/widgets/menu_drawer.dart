@@ -58,7 +58,7 @@ class MenuDrawer extends StatelessWidget {
               const SizedBox(height: 16),
               CustomMenuItem(
                 itemText: 'Notifications',
-                iconPath: Assets.icons.universityMap.path,
+                iconPath: Assets.icons.notification.path,
                 onTap: () {
                   Routemaster.of(context).push(NotificationsPage.path);
                 },
@@ -66,7 +66,7 @@ class MenuDrawer extends StatelessWidget {
               const SizedBox(height: 16),
               CustomMenuItem(
                 itemText: 'University map',
-                iconPath: Assets.icons.notification.path,
+                iconPath: Assets.icons.universityMap.path,
                 onTap: () {
                   Routemaster.of(context).push(MapPage.path);
                 },

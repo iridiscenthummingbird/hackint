@@ -45,7 +45,7 @@ class MarkerInfoPopUp extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             const Text(
-              'Desciption',
+              'Description',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 14,
