@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackint/domain/shared_models/api/user_model.dart';
+import 'package:hackint/flows/menu/presentation/pages/profile/profile.dart';
 import 'package:hackint/flows/menu/presentation/pages/create_marker/create_marker_page.dart';
 import 'package:hackint/flows/menu/presentation/pages/map/map_page.dart';
 import 'package:hackint/flows/menu/presentation/pages/pick_marker_location/pick_marker_location_page.dart';
@@ -26,6 +27,11 @@ class AppRouteMap extends RouteMap {
       MainPage.path: (_) => _createMaterialPage(
             const RouteMapInitialPage(
               child: MainPage(),
+            ),
+          ),
+      ProfilePage.path: (_) => _createMaterialPage(
+            const RouteMapInitialPage(
+              child: ProfilePage(),
             ),
           ),
       ..._mapRoute(),

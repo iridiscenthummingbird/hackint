@@ -30,9 +30,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/add.svg
   SvgGenImage get add => const SvgGenImage('assets/icons/add.svg');
 
-  /// File path: assets/icons/add_event.svg
-  SvgGenImage get addEvent => const SvgGenImage('assets/icons/add_event.svg');
-
   /// File path: assets/icons/arrowLeftIcon.svg
   SvgGenImage get arrowLeftIcon =>
       const SvgGenImage('assets/icons/arrowLeftIcon.svg');
@@ -40,30 +37,30 @@ class $AssetsIconsGen {
   /// File path: assets/icons/back.svg
   SvgGenImage get back => const SvgGenImage('assets/icons/back.svg');
 
-  /// File path: assets/icons/calendarEventIcon.svg
-  SvgGenImage get calendarEventIcon =>
-      const SvgGenImage('assets/icons/calendarEventIcon.svg');
-
-  /// File path: assets/icons/calendarIcon.svg
-  SvgGenImage get calendarIcon =>
-      const SvgGenImage('assets/icons/calendarIcon.svg');
+  /// File path: assets/icons/classRoomIcon.svg
+  SvgGenImage get classRoomIcon =>
+      const SvgGenImage('assets/icons/classRoomIcon.svg');
 
   /// File path: assets/icons/clockIcon.svg
   SvgGenImage get clockIcon => const SvgGenImage('assets/icons/clockIcon.svg');
 
-  /// File path: assets/icons/dandruffIcon.svg
-  SvgGenImage get dandruffIcon =>
-      const SvgGenImage('assets/icons/dandruffIcon.svg');
+  /// File path: assets/icons/clockPurpleIcon.svg
+  SvgGenImage get clockPurpleIcon =>
+      const SvgGenImage('assets/icons/clockPurpleIcon.svg');
 
-  /// File path: assets/icons/date.svg
-  SvgGenImage get date => const SvgGenImage('assets/icons/date.svg');
-
-  /// File path: assets/icons/drop_down.svg
-  SvgGenImage get dropDown => const SvgGenImage('assets/icons/drop_down.svg');
+  /// File path: assets/icons/email.svg
+  SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
 
   /// File path: assets/icons/fileAddingIcon.svg
   SvgGenImage get fileAddingIcon =>
       const SvgGenImage('assets/icons/fileAddingIcon.svg');
+
+  /// File path: assets/icons/graduateIcon.svg
+  SvgGenImage get graduateIcon =>
+      const SvgGenImage('assets/icons/graduateIcon.svg');
+
+  /// File path: assets/icons/group.svg
+  SvgGenImage get group => const SvgGenImage('assets/icons/group.svg');
 
   /// File path: assets/icons/locationIcon.svg
   SvgGenImage get locationIcon =>
@@ -84,38 +81,46 @@ class $AssetsIconsGen {
   SvgGenImage get pencilEditIcon =>
       const SvgGenImage('assets/icons/pencilEditIcon.svg');
 
-  /// File path: assets/icons/searchIcon.svg
-  SvgGenImage get searchIcon =>
-      const SvgGenImage('assets/icons/searchIcon.svg');
+  /// File path: assets/icons/student_card.svg
+  SvgGenImage get studentCard =>
+      const SvgGenImage('assets/icons/student_card.svg');
 
   /// File path: assets/icons/time.svg
   SvgGenImage get time => const SvgGenImage('assets/icons/time.svg');
+
+  /// File path: assets/icons/userIcon.svg
+  SvgGenImage get userIcon => const SvgGenImage('assets/icons/userIcon.svg');
 
   /// File path: assets/icons/userProfileIcon.svg
   SvgGenImage get userProfileIcon =>
       const SvgGenImage('assets/icons/userProfileIcon.svg');
 
+  /// File path: assets/icons/user_circle.svg
+  SvgGenImage get userCircle =>
+      const SvgGenImage('assets/icons/user_circle.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         add,
-        addEvent,
         arrowLeftIcon,
         back,
-        calendarEventIcon,
-        calendarIcon,
+        classRoomIcon,
         clockIcon,
-        dandruffIcon,
-        date,
-        dropDown,
+        clockPurpleIcon,
+        email,
         fileAddingIcon,
+        graduateIcon,
+        group,
         locationIcon,
         logOutIcon,
         menu,
         moreDotsIcon,
         pencilEditIcon,
-        searchIcon,
+        studentCard,
         time,
-        userProfileIcon
+        userIcon,
+        userProfileIcon,
+        userCircle
       ];
 }
 

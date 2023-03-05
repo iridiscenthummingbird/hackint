@@ -51,7 +51,7 @@ class FirestoreUsers {
       id: user.id,
       email: userData['email'],
       isCompletedRegistration: userData['isCompleteRegistration'],
-      studentId: userData['studentId'],
+      studentId: userData['studentsId'],
       name: userData['name'],
       group: group,
     );
