@@ -27,6 +27,9 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/add.svg
+  SvgGenImage get add => const SvgGenImage('assets/icons/add.svg');
+
   /// File path: assets/icons/arrowLeftIcon.svg
   SvgGenImage get arrowLeftIcon =>
       const SvgGenImage('assets/icons/arrowLeftIcon.svg');
@@ -105,6 +108,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        add,
         arrowLeftIcon,
         back,
         classRoomIcon,
@@ -129,6 +133,21 @@ class $AssetsIconsGen {
       ];
 }
 
+class $AssetsMarkersGen {
+  const $AssetsMarkersGen();
+
+  /// File path: assets/markers/defaultMarker.png
+  AssetGenImage get defaultMarker =>
+      const AssetGenImage('assets/markers/defaultMarker.png');
+
+  /// File path: assets/markers/default_marker_hybrid.png
+  AssetGenImage get defaultMarkerHybrid =>
+      const AssetGenImage('assets/markers/default_marker_hybrid.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [defaultMarker, defaultMarkerHybrid];
+}
+
 class Assets {
   Assets._();
 
@@ -139,6 +158,7 @@ class Assets {
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const AssetGenImage logoBackground =
       AssetGenImage('assets/logo_background.png');
+  static const $AssetsMarkersGen markers = $AssetsMarkersGen();
   static const AssetGenImage noEvents = AssetGenImage('assets/no_events.png');
   static const SvgGenImage uploadImage = SvgGenImage('assets/uploadImage.svg');
 
