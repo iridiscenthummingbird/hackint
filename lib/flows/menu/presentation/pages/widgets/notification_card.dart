@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hackint/flows/main/domain/entities/change_notification.dart';
+import 'package:intl/intl.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({
     super.key,
-    required this.title,
-    required this.description,
+    required this.notification,
   });
 
-  final String title;
-  final String description;
+  final ChangeNotification notification;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class NotificationCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                notification.title,
                 style:
                     Theme.of(context).primaryTextTheme.displayLarge?.copyWith(
                           color: const Color(0xffFBBC05),
@@ -34,8 +34,15 @@ class NotificationCard extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                description,
+                notification.description,
                 style: Theme.of(context).primaryTextTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                DateFormat('HH:mm dd.MM.yyyy').format(notification.dateTime),
+                style: Theme.of(context).primaryTextTheme.titleMedium?.copyWith(
+                      color: const Color(0xFF1C1243).withOpacity(0.8),
+                    ),
               ),
             ],
           ),
