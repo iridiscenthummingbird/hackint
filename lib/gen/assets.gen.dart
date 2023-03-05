@@ -27,6 +27,9 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/add.svg
+  SvgGenImage get add => const SvgGenImage('assets/icons/add.svg');
+
   /// File path: assets/icons/add_event.svg
   SvgGenImage get addEvent => const SvgGenImage('assets/icons/add_event.svg');
 
@@ -94,6 +97,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        add,
         addEvent,
         arrowLeftIcon,
         back,
@@ -122,8 +126,12 @@ class $AssetsMarkersGen {
   AssetGenImage get defaultMarker =>
       const AssetGenImage('assets/markers/defaultMarker.png');
 
+  /// File path: assets/markers/default_marker_hybrid.png
+  AssetGenImage get defaultMarkerHybrid =>
+      const AssetGenImage('assets/markers/default_marker_hybrid.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [defaultMarker];
+  List<AssetGenImage> get values => [defaultMarker, defaultMarkerHybrid];
 }
 
 class Assets {

@@ -38,10 +38,19 @@ class MarkerHelper {
     return 12742 * asin(sqrt(a));
   }
 
-  static Future<Map<MarkersIcons, Uint8List>> initMarkersIcons() async {
+  static Future<Map<MarkersIcons, Uint8List>> initMarkersIcons(
+      bool isMapNormal) async {
+    if (isMapNormal) {
+      return {
+        MarkersIcons.defaultMarker: await MarkerHelper.getBytesFromAsset(
+          Assets.markers.defaultMarker.path,
+          markerWidth,
+        ),
+      };
+    }
     return {
       MarkersIcons.defaultMarker: await MarkerHelper.getBytesFromAsset(
-        Assets.markers.defaultMarker.path,
+        Assets.markers.defaultMarkerHybrid.path,
         markerWidth,
       ),
     };
