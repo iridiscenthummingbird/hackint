@@ -7,6 +7,7 @@ import 'package:hackint/flows/menu/presentation/pages/pick_marker_location/pick_
 import 'package:routemaster/routemaster.dart';
 import '../flows/complete_registration/presentation/pages/complete_registration.dart';
 import '../flows/main/presentation/pages/main/main_page.dart';
+import '../flows/menu/presentation/pages/notifications/notifications_page.dart';
 import 'helpers/route_map_initial_page.dart';
 
 class AppRouteMap extends RouteMap {
@@ -32,6 +33,11 @@ class AppRouteMap extends RouteMap {
       ProfilePage.path: (_) => _createMaterialPage(
             const RouteMapInitialPage(
               child: ProfilePage(),
+            ),
+          ),
+      NotificationsPage.path: (_) => _createMaterialPage(
+            const RouteMapInitialPage(
+              child: NotificationsPage(),
             ),
           ),
       ..._mapRoute(),

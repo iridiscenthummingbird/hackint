@@ -77,6 +77,13 @@ class $AssetsIconsGen {
   SvgGenImage get moreDotsIcon =>
       const SvgGenImage('assets/icons/moreDotsIcon.svg');
 
+  /// File path: assets/icons/no_disturb.svg
+  SvgGenImage get noDisturb => const SvgGenImage('assets/icons/no_disturb.svg');
+
+  /// File path: assets/icons/notification.svg
+  SvgGenImage get notification =>
+      const SvgGenImage('assets/icons/notification.svg');
+
   /// File path: assets/icons/pencilEditIcon.svg
   SvgGenImage get pencilEditIcon =>
       const SvgGenImage('assets/icons/pencilEditIcon.svg');
@@ -115,6 +122,8 @@ class $AssetsIconsGen {
         logOutIcon,
         menu,
         moreDotsIcon,
+        noDisturb,
+        notification,
         pencilEditIcon,
         studentCard,
         time,
