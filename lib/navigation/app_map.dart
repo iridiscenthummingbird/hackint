@@ -46,8 +46,8 @@ class AppRouteMap extends RouteMap {
 
   static Map<String, PageBuilder> _mapRoute([String path = '']) {
     return {
-      MapPage.path: (_) => _createMaterialPage(
-            const MapPage(),
+      MapPage.path: (routeData) => _createMaterialPage(
+            MapPage(focusedPlaceId: routeData.queryParameters['markerId'] ?? '',),
           ),
       MapPage.path + CreateMarkerPage.path: (_) => _createMaterialPage(
             const CreateMarkerPage(),

@@ -12,14 +12,19 @@ import 'package:hackint/widgets/circular_loading.dart';
 import 'package:routemaster/routemaster.dart';
 
 class MapPage extends StatelessWidget {
-  const MapPage({Key? key}) : super(key: key);
+  const MapPage({
+    required this.focusedPlaceId,
+    Key? key,
+  }) : super(key: key);
+
+  final String focusedPlaceId;
 
   static const String path = '/map';
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<MapCubit>()..initMapData(),
+      create: (context) => getIt<MapCubit>()..initMapData(focusedPlaceId),
       child: Builder(builder: (context) {
         final mapCubit = context.read<MapCubit>();
 
@@ -37,7 +42,6 @@ class MapPage extends StatelessWidget {
                     Routemaster.of(context).pop();
                   },
                 ),
-                barrierDismissible: false,
               );
               mapCubit.resetMap();
             } else if (state is MapError) {
@@ -74,8 +78,7 @@ class MapPage extends StatelessWidget {
                         children: [
                           GoogleMap(
                             mapType: state.mapType,
-                            initialCameraPosition:
-                                MapCubit.initialCameraPosition,
+                            initialCameraPosition: state.initialCameraPosition,
                             onMapCreated: mapCubit.onMapCreated,
                             zoomControlsEnabled: false,
                             markers: state.markers,

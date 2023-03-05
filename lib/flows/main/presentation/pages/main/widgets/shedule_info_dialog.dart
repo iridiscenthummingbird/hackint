@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hackint/flows/menu/presentation/pages/map/map_page.dart';
 import 'package:hackint/gen/assets.gen.dart';
+import 'package:routemaster/routemaster.dart';
 
 import '../../../../domain/entities/lesson.dart';
 
@@ -60,7 +62,12 @@ class SheduleInfoDialog extends StatelessWidget {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(16),
                   onTap: () {
-                    print(lesson.buildingId);
+                    Routemaster.of(context).push(
+                      MapPage.path,
+                      queryParameters: {
+                        'markerId': lesson.buildingId,
+                      },
+                    );
                   },
                   child: Ink(
                     child: Container(
