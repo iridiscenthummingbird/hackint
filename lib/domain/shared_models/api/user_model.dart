@@ -18,6 +18,7 @@ class UserModel extends Equatable {
     this.teacherRef,
     this.studentId,
     this.group,
+    this.isAdmin = false,
   });
 
   final String id;
@@ -28,6 +29,7 @@ class UserModel extends Equatable {
   final String? studentId;
   final Group? group;
   final DocumentReference? teacherRef;
+  final bool isAdmin;
 
   @override
   String toString() {

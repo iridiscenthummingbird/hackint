@@ -51,6 +51,7 @@ class FirestoreUsers {
         isStudent: false,
         isCompletedRegistration: true,
         teacherRef: teacher.reference,
+        isAdmin: teacher.get('isAdmin'),
       );
     }
     final user = result.docs.first;
