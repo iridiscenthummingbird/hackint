@@ -44,8 +44,8 @@ class SheduleInfoDialog extends StatelessWidget {
               ),
               RowInfo(
                 iconPath: Assets.icons.classRoomIcon.path,
-                title: 'Classroom',
-                info: lesson.auditory,
+                title: 'Classroom/Building',
+                info: '${lesson.auditory}/${lesson.buildingName}',
               ),
               RowInfo(
                 iconPath: Assets.icons.clockPurpleIcon.path,
