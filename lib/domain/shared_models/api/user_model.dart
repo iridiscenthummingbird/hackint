@@ -1,5 +1,6 @@
 import 'dart:convert' as dart_convert;
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../flows/complete_registration/domain/entities/group.dart';
@@ -12,17 +13,21 @@ class UserModel extends Equatable {
     required this.id,
     this.name,
     required this.email,
+    required this.isStudent,
     required this.isCompletedRegistration,
+    this.teacherRef,
     this.studentId,
     this.group,
   });
 
   final String id;
+  final bool isStudent;
   final String? email;
   final String? name;
   final bool isCompletedRegistration;
   final String? studentId;
   final Group? group;
+  final DocumentReference? teacherRef;
 
   @override
   String toString() {
@@ -32,18 +37,19 @@ class UserModel extends Equatable {
         '}';
   }
 
-  UserModel copyWith({
-    String? id,
-    String? email,
-    String? name,
-    String? phone,
-    bool? isTermsAccepted,
-    bool? isCompletedRegistration,
-    String? studentId,
-    Group? group,
-  }) {
+  UserModel copyWith(
+      {String? id,
+      String? email,
+      String? name,
+      String? phone,
+      bool? isTermsAccepted,
+      bool? isCompletedRegistration,
+      String? studentId,
+      Group? group,
+      bool? isStudent}) {
     return UserModel(
       id: id ?? this.id,
+      isStudent: isStudent ?? this.isStudent,
       email: email ?? this.email,
       name: name ?? this.name,
       isCompletedRegistration:
@@ -63,6 +69,7 @@ class UserModel extends Equatable {
       isCompletedRegistration: json['isCompleteRegistration'],
       studentId: json['studentId'],
       group: json['group'],
+      isStudent: json['isStudent'],
     );
   }
 

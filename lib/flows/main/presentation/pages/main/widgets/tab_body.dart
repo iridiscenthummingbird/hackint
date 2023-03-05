@@ -8,14 +8,17 @@ import 'package:hackint/flows/main/presentation/pages/main/widgets/shedule_tile.
 
 import '../../../../../../gen/assets.gen.dart';
 import '../../../../../../navigation/app_state_cubit/app_state_cubit.dart';
+import '../../../../../teacher/presentation/pages/main/cubit/teacher_main_cubit.dart';
 
 class TabBody extends StatelessWidget {
   const TabBody({
     super.key,
     required this.lessons,
+    this.isTeacher = false,
   });
 
   final List<Lesson> lessons;
+  final bool isTeacher;
 
   double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 
@@ -67,6 +70,8 @@ class TabBody extends StatelessWidget {
             child: SheduleTile(
               lesson: lesson,
               number: index + 1,
+              isTeacher: isTeacher,
+              changeTime: context.read<TeacherMainCubit>().changeTime,
             ),
           );
         },
