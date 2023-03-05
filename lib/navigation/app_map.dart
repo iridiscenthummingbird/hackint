@@ -95,6 +95,7 @@ class AppRouteMap extends RouteMap {
               child: TeacherNotificationsPage(),
             ),
           ),
+      ..._mapRoute(),
     };
   }
 
