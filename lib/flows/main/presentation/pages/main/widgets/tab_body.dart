@@ -17,6 +17,8 @@ class TabBody extends StatelessWidget {
 
   final List<Lesson> lessons;
 
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
+
   @override
   Widget build(BuildContext context) {
     if (lessons.isEmpty) {
@@ -40,6 +42,11 @@ class TabBody extends StatelessWidget {
         ],
       );
     }
+    lessons.sort(
+      (a, b) => toDouble(a.time).compareTo(
+        toDouble(b.time),
+      ),
+    );
     return RefreshIndicator(
       color: Theme.of(context).primaryColor,
       onRefresh: () async {
