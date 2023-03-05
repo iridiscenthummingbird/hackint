@@ -30,3 +30,22 @@ class MapDataLoaded extends PickMarkerLocationState {
     required super.mapType,
   });
 }
+
+class MarkerAdded extends PickMarkerLocationState {
+  const MarkerAdded({
+    super.markers,
+    super.markerPoint,
+    required super.mapType,
+  });
+}
+
+class PickLocationError extends PickMarkerLocationState {
+  const PickLocationError({
+    super.markers,
+    super.markerPoint,
+    required super.mapType,
+    required this.failure,
+  });
+
+  final Failure failure;
+}

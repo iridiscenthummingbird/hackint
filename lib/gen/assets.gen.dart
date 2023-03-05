@@ -95,6 +95,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/time.svg
   SvgGenImage get time => const SvgGenImage('assets/icons/time.svg');
 
+  /// File path: assets/icons/university_map.svg
+  SvgGenImage get universityMap =>
+      const SvgGenImage('assets/icons/university_map.svg');
+
   /// File path: assets/icons/userIcon.svg
   SvgGenImage get userIcon => const SvgGenImage('assets/icons/userIcon.svg');
 
@@ -127,6 +131,7 @@ class $AssetsIconsGen {
         pencilEditIcon,
         studentCard,
         time,
+        universityMap,
         userIcon,
         userProfileIcon,
         userCircle
@@ -144,8 +149,37 @@ class $AssetsMarkersGen {
   AssetGenImage get defaultMarkerHybrid =>
       const AssetGenImage('assets/markers/default_marker_hybrid.png');
 
+  /// File path: assets/markers/education.png
+  AssetGenImage get education =>
+      const AssetGenImage('assets/markers/education.png');
+
+  /// File path: assets/markers/hotel.png
+  AssetGenImage get hotel => const AssetGenImage('assets/markers/hotel.png');
+
+  /// File path: assets/markers/park.png
+  AssetGenImage get park => const AssetGenImage('assets/markers/park.png');
+
+  /// File path: assets/markers/restaurant.png
+  AssetGenImage get restaurant =>
+      const AssetGenImage('assets/markers/restaurant.png');
+
+  /// File path: assets/markers/shop.png
+  AssetGenImage get shop => const AssetGenImage('assets/markers/shop.png');
+
+  /// File path: assets/markers/sports.png
+  AssetGenImage get sports => const AssetGenImage('assets/markers/sports.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [defaultMarker, defaultMarkerHybrid];
+  List<AssetGenImage> get values => [
+        defaultMarker,
+        defaultMarkerHybrid,
+        education,
+        hotel,
+        park,
+        restaurant,
+        shop,
+        sports
+      ];
 }
 
 class Assets {

@@ -58,16 +58,23 @@ class AppRouteMap extends RouteMap {
 
   static Map<String, PageBuilder> _mapRoute([String path = '']) {
     return {
-      MapPage.path: (_) => _createMaterialPage(
-            const MapPage(),
+      MapPage.path: (routeData) => _createMaterialPage(
+            MapPage(
+              focusedPlaceId: routeData.queryParameters['markerId'] ?? '',
+            ),
           ),
       MapPage.path + CreateMarkerPage.path: (_) => _createMaterialPage(
             const CreateMarkerPage(),
           ),
-      MapPage.path + CreateMarkerPage.path + PickMarkerLocationPage.path: (_) =>
-          _createMaterialPage(
-            const PickMarkerLocationPage(),
-          ),
+      MapPage.path + CreateMarkerPage.path + PickMarkerLocationPage.path:
+          (routeData) => _createMaterialPage(
+                PickMarkerLocationPage(
+                  name: routeData.queryParameters['name']!,
+                  description: routeData.queryParameters['description']!,
+                  typeId: routeData.queryParameters['typeId']!,
+                  typeIndex: int.parse(routeData.queryParameters['typeIndex']!),
+                ),
+              ),
     };
   }
 

@@ -42,15 +42,55 @@ class MarkerHelper {
       bool isMapNormal) async {
     if (isMapNormal) {
       return {
-        MarkersIcons.defaultMarker: await MarkerHelper.getBytesFromAsset(
-          Assets.markers.defaultMarker.path,
+        MarkersIcons.shop: await MarkerHelper.getBytesFromAsset(
+          Assets.markers.shop.path,
+          markerWidth,
+        ),
+        MarkersIcons.hotel: await MarkerHelper.getBytesFromAsset(
+          Assets.markers.hotel.path,
+          markerWidth,
+        ),
+        MarkersIcons.restaurant: await MarkerHelper.getBytesFromAsset(
+          Assets.markers.restaurant.path,
+          markerWidth,
+        ),
+        MarkersIcons.education: await MarkerHelper.getBytesFromAsset(
+          Assets.markers.education.path,
+          markerWidth,
+        ),
+        MarkersIcons.sports: await MarkerHelper.getBytesFromAsset(
+          Assets.markers.sports.path,
+          markerWidth,
+        ),
+        MarkersIcons.park: await MarkerHelper.getBytesFromAsset(
+          Assets.markers.park.path,
           markerWidth,
         ),
       };
     }
     return {
-      MarkersIcons.defaultMarker: await MarkerHelper.getBytesFromAsset(
-        Assets.markers.defaultMarkerHybrid.path,
+      MarkersIcons.shop: await MarkerHelper.getBytesFromAsset(
+        Assets.markers.shop.path,
+        markerWidth,
+      ),
+      MarkersIcons.hotel: await MarkerHelper.getBytesFromAsset(
+        Assets.markers.hotel.path,
+        markerWidth,
+      ),
+      MarkersIcons.restaurant: await MarkerHelper.getBytesFromAsset(
+        Assets.markers.restaurant.path,
+        markerWidth,
+      ),
+      MarkersIcons.education: await MarkerHelper.getBytesFromAsset(
+        Assets.markers.education.path,
+        markerWidth,
+      ),
+      MarkersIcons.sports: await MarkerHelper.getBytesFromAsset(
+        Assets.markers.sports.path,
+        markerWidth,
+      ),
+      MarkersIcons.park: await MarkerHelper.getBytesFromAsset(
+        Assets.markers.park.path,
         markerWidth,
       ),
     };

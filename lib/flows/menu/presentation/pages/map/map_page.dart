@@ -12,14 +12,19 @@ import 'package:hackint/widgets/circular_loading.dart';
 import 'package:routemaster/routemaster.dart';
 
 class MapPage extends StatelessWidget {
-  const MapPage({Key? key}) : super(key: key);
+  const MapPage({
+    required this.focusedPlaceId,
+    Key? key,
+  }) : super(key: key);
+
+  final String focusedPlaceId;
 
   static const String path = '/map';
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<MapCubit>()..initMapData(),
+      create: (context) => getIt<MapCubit>()..initMapData(focusedPlaceId),
       child: Builder(builder: (context) {
         final mapCubit = context.read<MapCubit>();
 
@@ -29,17 +34,20 @@ class MapPage extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) => MarkerInfoPopUp(
-                  title: 'FICT KPI',
-                  description:
-                      'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
-                  typeColor: const Color(0xffFF8A00),
+                  title: state.pressedMarkerPoint.name,
+                  description: state.pressedMarkerPoint.description,
+                  typeName: state.pressedMarkerPoint.type.name,
+                  typeColor: state.pressedMarkerPoint.type.color,
                   onClosed: () {
                     Routemaster.of(context).pop();
                   },
                 ),
-                barrierDismissible: false,
               );
               mapCubit.resetMap();
+            } else if (state is MapError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.failure.message)),
+              );
             }
           },
           child: BlocBuilder<MapCubit, MapState>(
@@ -70,8 +78,7 @@ class MapPage extends StatelessWidget {
                         children: [
                           GoogleMap(
                             mapType: state.mapType,
-                            initialCameraPosition:
-                                MapCubit.initialCameraPosition,
+                            initialCameraPosition: state.initialCameraPosition,
                             onMapCreated: mapCubit.onMapCreated,
                             zoomControlsEnabled: false,
                             markers: state.markers,
@@ -84,8 +91,10 @@ class MapPage extends StatelessWidget {
                             bottom: 30,
                             child: AddMarkerButton(
                               onPressed: () async {
-                                final markerAdded = await Routemaster.of(context)
-                                    .push<bool>(path + CreateMarkerPage.path).result;
+                                final markerAdded = await Routemaster.of(
+                                        context)
+                                    .push<bool>(path + CreateMarkerPage.path)
+                                    .result;
                                 if (markerAdded ?? false) {
                                   mapCubit.emitLoading();
                                   await mapCubit.loadMapData();
