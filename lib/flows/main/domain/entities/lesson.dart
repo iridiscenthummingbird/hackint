@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackint/flows/complete_registration/domain/entities/group.dart';
 
 class Lesson {
   final String id;
@@ -11,6 +12,7 @@ class Lesson {
   final String buildingId;
   final String type;
   final String teacherName;
+  final List<Group> groups;
 
   Lesson({
     required this.id,
@@ -23,5 +25,6 @@ class Lesson {
     required this.buildingId,
     required this.type,
     required this.teacherName,
+    required this.groups,
   });
 }
